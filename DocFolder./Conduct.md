@@ -52,6 +52,7 @@ Consequence: A written warning with consequences for continued behavior.
 Community Impact: A serious violation of community standards, including sustained inappropriate behavior.
 Consequence: The member will be reported to the class instructor and TA’s for further review and potential disciplinary action.
 
-Nadia Sutyrina 02/25/25
-Matthew Bolduc 02/25/25
-Danny Tran 02/25/25
+Nadia Sutyrina 02/25/25 \
+Matthew Bolduc 02/25/25 \
+Danny Tran 02/25/25 \
+Jessica Tingley 02/25/25
