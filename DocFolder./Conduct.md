@@ -53,3 +53,4 @@ Community Impact: A serious violation of community standards, including sustaine
 Consequence: The member will be reported to the class instructor and TA’s for further review and potential disciplinary action.
 
 Nadia Sutyrina 02/25/25
+Matthew Bolduc 02/25/25
