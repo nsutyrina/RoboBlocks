@@ -11,7 +11,7 @@ This document contains links to the user personas for RoboBlocks, outlining diff
 
 ## Summary of Customer Segments  
 
-1. **Young Learners (Ages 8-12)**  
+1. **Young Learner (Ages 8-12)**  
    - Enjoy hands-on activities and interactive learning.  
    - Prefer visually engaging lessons with instant feedback.  
    - Need a simple and easy-to-use interface.  
