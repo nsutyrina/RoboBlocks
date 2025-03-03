@@ -1,8 +1,8 @@
 Observation 1:
 
-    - Observation Statement: A large number of participants value gamification and rewards as key features to keep kids engaged in a coding app.
-    - Supporting Data: Multiple responses mentioned features such as badges, points, prizes, and competitive challenges to motivate users (e.g., "Getting prizes on the app or points to get prizes" and "Competitions / coding challenges").
-    - Team Action (if any): Implement a points/reward system and incorporate gamified challenges to enhance user engagement and retention.
+    Observation Statement: A large number of participants value gamification and rewards as key features to keep kids engaged in a coding app.
+    Supporting Data: Multiple responses mentioned features such as badges, points, prizes, and competitive challenges to motivate users (e.g., "Getting prizes on the app or points to get prizes" and "Competitions / coding challenges").
+    Team Action (if any): Implement a points/reward system and incorporate gamified challenges to enhance user engagement and retention.
 
 Observation 2:
 
