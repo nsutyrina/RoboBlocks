@@ -14,4 +14,3 @@ Fields:
 | photo_url      | string    | Path to the user’s profile image                 |
 | uid            | string    | User’s unique ID from Firebase Auth             |
 | created_time   | timestamp | The date and time when the account was created  |
-| phone_number   | string    | User’s phone number (optional or required)      |
