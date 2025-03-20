@@ -15,41 +15,7 @@ Backend Implementation:
 - The response will be stored in Firebase Firestore, associated with the user's account.
 - Firebase Analytics can be used to log NPS events for additional analysis on the user's behavior post-submission.
 
-# 2. Logins Per Day
-User Story:
- AS a product owner,
- I WANT to track the number of logins per day,
- SO THAT I can analyze user engagement and app usage patterns.
-SCENARIO: Logins Per Day Metric
- GIVEN users are logging into the app,
- WHEN a user logs in,
- THEN the login event should be recorded with a timestamp,
- AND the total number of logins per day should be available in the app's analytics dashboard.
-
-Backend Implementation:
-- Firebase Authentication already tracks user logins, so when a user logs in via Firebase, we can trigger a custom event.
-- In FlutterFlow, the onLogin trigger records custom events (e.g., "user_login").
-- This event will be logged in Firebase Analytics, including a timestamp of the login.
-- The total logins per day can be aggregated in Firebase using Firestore or Firebase Analytics to calculate and display in your app’s dashboard.
-
-# 3. Retention
-User Story:
- AS a product owner,
- I WANT to track user retention rates,
- SO THAT I can evaluate how well the app is keeping users engaged over time.
-SCENARIO: User Retention Metric
- GIVEN a user has logged into the app previously,
- WHEN the app is opened again after a set period (e.g., 7 days),
- THEN the retention rate for that user should be recorded,
- AND the app should provide retention data for analysis to determine the percentage of returning users.
-
-Backend Implementation:
-- Firebase Authentication tracks user login dates, which we can leverage to measure retention.
-- When a user logs in, we capture the timestamp of the last login in Firestore.
-- To track retention, compare the current login date to the last login date stored in the user's document in Firestore.
-- For retention analysis (e.g., 7-day, 30-day retention), this data will be aggregated in Firebase Analytics or custom queries in Firestore.
-
-# 4. New Users Per Day
+# 2. New Users Per Day
 User Story:
  AS a product owner,
  I WANT to track new users per day,
@@ -67,7 +33,43 @@ Backend Implementation:
 - To track new users per day, Firebase Analytics will aggregate the "new_user_signup" event by date.
 - You can also use Firestore queries to retrieve and display the number of users who signed up on a particular day.
 
-# 5. Lesson Completion
+# 3. Logins Per Day
+User Story:
+ AS a product owner,
+ I WANT to track the number of logins per day,
+ SO THAT I can analyze user engagement and app usage patterns.
+SCENARIO: Logins Per Day Metric
+ GIVEN users are logging into the app,
+ WHEN a user logs in,
+ THEN the login event should be recorded with a timestamp,
+ AND the total number of logins per day should be available in the app's analytics dashboard.
+
+Backend Implementation:
+- Firebase Authentication already tracks user logins, so when a user logs in via Firebase, we can trigger a custom event.
+- In FlutterFlow, the onLogin trigger records custom events (e.g., "user_login").
+- This event will be logged in Firebase Analytics, including a timestamp of the login.
+- The total logins per day can be aggregated in Firebase using Firestore or Firebase Analytics to calculate and display in your app’s dashboard.
+
+# 4. Retention
+User Story:
+ AS a product owner,
+ I WANT to track user retention rates,
+ SO THAT I can evaluate how well the app is keeping users engaged over time.
+SCENARIO: User Retention Metric
+ GIVEN a user has logged into the app previously,
+ WHEN the app is opened again after a set period (e.g., 7 days),
+ THEN the retention rate for that user should be recorded,
+ AND the app should provide retention data for analysis to determine the percentage of returning users.
+
+Backend Implementation:
+- Firebase Authentication tracks user login dates, which we can leverage to measure retention.
+- When a user logs in, we capture the timestamp of the last login in Firestore.
+- To track retention, compare the current login date to the last login date stored in the user's document in Firestore.
+- For retention analysis (e.g., 7-day, 30-day retention), this data will be aggregated in Firebase Analytics or custom queries in Firestore.
+
+# 5. Clickthrough Rate (CTR)
+
+# 6. Connecting the Robot to Bluetooth
 User Story:
  AS a product owner,
  I WANT to track lesson completion rates,
