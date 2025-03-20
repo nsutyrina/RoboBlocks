@@ -68,20 +68,37 @@ Backend Implementation:
 - For retention analysis (e.g., 7-day, 30-day retention), this data will be aggregated in Firebase Analytics or custom queries in Firestore.
 
 # 5. Clickthrough Rate (CTR)
+User Story:
+AS a product owner,
+I WANT to measure the effectiveness of app features and promotions,
+SO THAT I can evaluate user interest and engagement with content.
+
+SCENARIO: Clickthrough Rate (CTR) Metric
+GIVEN the app features buttons, links, or promotional content,
+WHEN a user clicks on a featured element (e.g., button, ad, or banner),
+THEN the click event should be tracked,
+AND the CTR should be calculated to assess user engagement.
+
+Backend Implementation:
+- Each clickable element in the app will have a unique event identifier (e.g., "button_click," "ad_click").
+- The click events will be logged using Firebase Analytics to capture user interactions.
+- Firebase Analytics will allow you to calculate the CTR by dividing the number of clicks by the number of impressions (views or opportunities to click).
+- Custom reports can be created in Firebase Analytics to evaluate CTR for different elements or promotions across various time frames.
 
 # 6. Connecting the Robot to Bluetooth
 User Story:
- AS a product owner,
- I WANT to track lesson completion rates,
- SO THAT I can measure how effectively users are engaging with and completing lessons.
+AS a product owner,
+I WANT to track lesson completion rates,
+SO THAT I can measure how effectively users are engaging with and completing lessons.
+
 SCENARIO: Lesson Completion Metric
- GIVEN a user is taking lessons in the app,
- WHEN they complete a lesson,
- THEN the completion status of that lesson should be recorded,
- AND the app should display lesson completion data to track the percentage of users completing each lesson.
+GIVEN a user is taking lessons in the app,
+WHEN they complete a lesson,
+THEN the completion status of that lesson should be recorded,
+AND the app should display lesson completion data to track the percentage of users completing each lesson.
 
 Backend Implementation:
-- As users progress through lessons, FlutterFlow can trigger events when a lesson is completed (e.g., using a "lesson_completed" event).
+- As users progress through a lesson on connecting the robot (Lesson 0 in the app), FlutterFlow can trigger events when a lesson is completed (e.g., using a "lesson_completed" event on a button).
 - Firebase Analytics or Firestore will capture and store this event along with lesson-specific data (e.g., lesson name, completion timestamp).
 - This data will be used to calculate lesson completion rates by analyzing the percentage of users completing lessons in a given period.
 - Firebase Analytics or Firestore queries can be used to aggregate and display the completion data on your dashboard.
