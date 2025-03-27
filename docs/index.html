@@ -30,4 +30,40 @@
         padding: 10px;
         border: 1px solid #ccc;
         overflow: auto;
-      }</style><script defer="defer" src="bundle.js"></script></head><body><h1>🚀 RoboBlocks Playground</h1><div id="pageContainer"><div id="outputPane"><h3>Generated Code</h3><pre id="generatedCode"><code></code></pre><div id="output"></div></div><div id="blocklyDiv"></div></div></body></html>
+      }
+      .correct {
+        border: 2px solid green;
+      }
+      .incorrect {
+        border: 2px solid red;
+      }</style><script defer="defer" src="bundle.js"></script></head><body><h1>TESTING THIS DISREGARD</h1><div id="pageContainer"><div id="outputPane"><h3>Generated Code</h3><pre id="generatedCode"><code></code></pre><div id="output"></div></div><div id="blocklyDiv"></div></div><script src="https://unpkg.com/blockly/blockly.min.js"></script><script src="toolbox.js"></script><script>// Initialize Blockly workspace
+      const workspace = Blockly.inject('blocklyDiv', {
+        toolbox: document.getElementById('toolbox'),
+        media: 'https://unpkg.com/blockly/media/',
+      });
+
+      function checkSequence() {
+        const correctSequence = ['moonwalk_right', 'moonwalk_left', 'walk_forward', 'walk_backward'];
+        let correct = true;
+
+        // Check the sequence of blocks in the workspace
+        const blocks = workspace.getAllBlocks();
+        blocks.forEach((block, index) => {
+          if (block.type !== correctSequence[index]) {
+            block.setColour('#FF0000'); // red if incorrect
+            correct = false;
+          } else {
+            block.setColour('#00FF00'); // green if correct
+          }
+        });
+
+        return correct;
+      }
+
+      setInterval(() => {
+        if (checkSequence()) {
+          document.getElementById('output').innerText = 'Correct Sequence!';
+        } else {
+          document.getElementById('output').innerText = 'Incorrect Sequence!';
+        }
+      }, 1000);</script></body></html>
