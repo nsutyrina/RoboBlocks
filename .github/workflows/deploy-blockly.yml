@@ -26,16 +26,16 @@ jobs:
         working-directory: blockly-site
         run: npm run build
 
-      - name: Copy to docs/
+      - name: Copy to blockly-deploy/
         run: |
-          rm -rf docs/*
-          cp -r blockly-site/dist/* docs/
+          rm -rf blockly-deploy/*
+          cp -r blockly-site/dist/* blockly-deploy/
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/
-          git commit -m "Auto-deploy Blockly site from blockly-site/"
+          git add blockly-deploy/
+          git commit -m "Auto-deploy Blockly site to blockly-deploy/" || echo "No changes to commit"
           git push
 
