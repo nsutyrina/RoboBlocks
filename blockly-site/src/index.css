@@ -38,3 +38,11 @@ code {
 #output {
   height: 50%;
 }
+
+.correct {
+  border: 2px solid green;
+}
+
+.incorrect {
+  border: 2px solid red;
+}
