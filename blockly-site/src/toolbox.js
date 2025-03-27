@@ -1,5 +1,5 @@
 export const toolbox = {
-  kind: 'categoryToolbox',
+  kind: 'categoryToolbox', 
   contents: [
     // Existing categories here...
 
