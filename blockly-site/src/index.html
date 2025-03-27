@@ -1,4 +1,4 @@
-<!doctype html> 
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -37,12 +37,6 @@
         border: 1px solid #ccc;
         overflow: auto;
       }
-      .correct {
-        border: 2px solid green;
-      }
-      .incorrect {
-        border: 2px solid red;
-      }
     </style>
   </head>
   <body>
@@ -55,41 +49,5 @@
       </div>
       <div id="blocklyDiv"></div>
     </div>
-
-    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-    <script src="toolbox.js"></script>
-    <script>
-      // Initialize Blockly workspace
-      const workspace = Blockly.inject('blocklyDiv', {
-        toolbox: toolbox, // Use the toolbox defined in toolbox.js
-        media: 'https://unpkg.com/blockly/media/',
-      });
-
-      function checkSequence() {
-        const correctSequence = ['moonwalk_right', 'moonwalk_left', 'walk_forward', 'walk_backward'];
-        let correct = true;
-
-        // Check the sequence of blocks in the workspace
-        const blocks = workspace.getAllBlocks();
-        blocks.forEach((block, index) => {
-          if (block.type !== correctSequence[index]) {
-            block.setColour('#FF0000'); // red if incorrect
-            correct = false;
-          } else {
-            block.setColour('#00FF00'); // green if correct
-          }
-        });
-
-        return correct;
-      }
-
-      setInterval(() => {
-        if (checkSequence()) {
-          document.getElementById('output').innerText = 'Correct Sequence!';
-        } else {
-          document.getElementById('output').innerText = 'Incorrect Sequence!';
-        }
-      }, 1000);
-    </script>
   </body>
 </html>
