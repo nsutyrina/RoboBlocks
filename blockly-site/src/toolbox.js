@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2023 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 export const toolbox = {
   kind: 'categoryToolbox',
   contents: [
@@ -37,9 +43,24 @@ export const toolbox = {
           kind: 'block',
           type: 'controls_for',
           inputs: {
-            FROM: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
-            TO: { shadow: { type: 'math_number', fields: { NUM: 10 } } },
-            BY: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
+            FROM: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 1 },
+              },
+            },
+            TO: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 10 },
+              },
+            },
+            BY: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 1 },
+              },
+            },
           },
         },
         { kind: 'block', type: 'controls_forEach' },
@@ -56,22 +77,42 @@ export const toolbox = {
           kind: 'block',
           type: 'math_arithmetic',
           inputs: {
-            A: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
-            B: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
+            A: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 1 },
+              },
+            },
+            B: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 1 },
+              },
+            },
           },
         },
         {
           kind: 'block',
           type: 'math_single',
           inputs: {
-            NUM: { shadow: { type: 'math_number', fields: { NUM: 9 } } },
+            NUM: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 9 },
+              },
+            },
           },
         },
         {
           kind: 'block',
           type: 'math_trig',
           inputs: {
-            NUM: { shadow: { type: 'math_number', fields: { NUM: 45 } } },
+            NUM: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 45 },
+              },
+            },
           },
         },
         { kind: 'block', type: 'math_constant' },
@@ -80,7 +121,10 @@ export const toolbox = {
           type: 'math_number_property',
           inputs: {
             NUMBER_TO_CHECK: {
-              shadow: { type: 'math_number', fields: { NUM: 0 } },
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 0 },
+              },
             },
           },
         },
@@ -89,7 +133,12 @@ export const toolbox = {
           type: 'math_round',
           fields: { OP: 'ROUND' },
           inputs: {
-            NUM: { shadow: { type: 'math_number', fields: { NUM: 3.1 } } },
+            NUM: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 3.1 },
+              },
+            },
           },
         },
         { kind: 'block', type: 'math_on_list', fields: { OP: 'SUM' } },
@@ -97,25 +146,60 @@ export const toolbox = {
           kind: 'block',
           type: 'math_modulo',
           inputs: {
-            DIVIDEND: { shadow: { type: 'math_number', fields: { NUM: 64 } } },
-            DIVISOR: { shadow: { type: 'math_number', fields: { NUM: 10 } } },
+            DIVIDEND: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 64 },
+              },
+            },
+            DIVISOR: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 10 },
+              },
+            },
           },
         },
         {
           kind: 'block',
           type: 'math_constrain',
           inputs: {
-            VALUE: { shadow: { type: 'math_number', fields: { NUM: 50 } } },
-            LOW: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
-            HIGH: { shadow: { type: 'math_number', fields: { NUM: 100 } } },
+            VALUE: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 50 },
+              },
+            },
+            LOW: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 1 },
+              },
+            },
+            HIGH: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 100 },
+              },
+            },
           },
         },
         {
           kind: 'block',
           type: 'math_random_int',
           inputs: {
-            FROM: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
-            TO: { shadow: { type: 'math_number', fields: { NUM: 100 } } },
+            FROM: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 1 },
+              },
+            },
+            TO: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 100 },
+              },
+            },
           },
         },
         { kind: 'block', type: 'math_random_float' },
@@ -123,8 +207,18 @@ export const toolbox = {
           kind: 'block',
           type: 'math_atan2',
           inputs: {
-            X: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
-            Y: { shadow: { type: 'math_number', fields: { NUM: 1 } } },
+            X: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 1 },
+              },
+            },
+            Y: {
+              shadow: {
+                type: 'math_number',
+                fields: { NUM: 1 },
+              },
+            },
           },
         },
       ],
@@ -225,6 +319,30 @@ export const toolbox = {
         },
         {
           kind: 'block',
+          type: 'text_count',
+          inputs: {
+            SUB: { shadow: { type: 'text' } },
+            TEXT: { shadow: { type: 'text' } },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'text_replace',
+          inputs: {
+            FROM: { shadow: { type: 'text' } },
+            TO: { shadow: { type: 'text' } },
+            TEXT: { shadow: { type: 'text' } },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'text_reverse',
+          inputs: {
+            TEXT: { shadow: { type: 'text' } },
+          },
+        },
+        {
+          kind: 'block',
           type: 'add_text',
           inputs: {
             TEXT: {
@@ -239,17 +357,68 @@ export const toolbox = {
     },
     {
       kind: 'category',
+      name: 'Lists',
+      categorystyle: 'list_category',
+      contents: [
+        { kind: 'block', type: 'lists_create_with' },
+        { kind: 'block', type: 'lists_repeat' },
+        { kind: 'block', type: 'lists_length' },
+        { kind: 'block', type: 'lists_isEmpty' },
+        {
+          kind: 'block',
+          type: 'lists_indexOf',
+          inputs: {
+            VALUE: { block: { type: 'variables_get' } },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'lists_getIndex',
+          inputs: {
+            VALUE: { block: { type: 'variables_get' } },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'lists_setIndex',
+          inputs: {
+            LIST: { block: { type: 'variables_get' } },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'lists_getSublist',
+          inputs: {
+            LIST: { block: { type: 'variables_get' } },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'lists_split',
+          inputs: {
+            DELIM: {
+              shadow: {
+                type: 'text',
+                fields: { TEXT: ',' },
+              },
+            },
+          },
+        },
+        { kind: 'block', type: 'lists_sort' },
+        { kind: 'block', type: 'lists_reverse' },
+      ],
+    },
+    { kind: 'sep' },
+    {
+      kind: 'category',
       name: 'Robot',
-      colour: '#FF6680',
+      categorystyle: 'logic_category',
       contents: [
         {
           kind: 'block',
           type: 'moon_walk_left',
         },
       ],
-    },
-    {
-      kind: 'sep',
     },
     {
       kind: 'category',
@@ -265,3 +434,4 @@ export const toolbox = {
     },
   ],
 };
+
