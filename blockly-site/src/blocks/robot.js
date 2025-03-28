@@ -3,7 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export const blocks = [
+import * as Blockly from 'blockly';
+
+Blockly.defineBlocksWithJsonArray([
   {
     type: 'moon_walk_left',
     message0: 'moonWalkLeft steps %1 T %2',
@@ -23,4 +25,6 @@ export const blocks = [
     tooltip: 'Make the robot walk left',
     helpUrl: '',
   },
-];
+]);
+
+export const blocks = [];
