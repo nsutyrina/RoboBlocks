@@ -26,6 +26,15 @@ function moonWalkLeft(steps, t) {
   outputDiv.appendChild(textEl);
 }
 
+function moonWalkRight(steps, t) {
+  const outputDiv = document.getElementById('output');
+  const msg = `moonWalkRight called with steps=${steps}, T=${t}`;
+  const textEl = document.createElement('p');
+  textEl.innerText = msg;
+  outputDiv.appendChild(textEl);
+}
+
+
 // Register blocks
 Blockly.common.defineBlocks(textBlocks);
 Blockly.common.defineBlocks(robotBlocks);
