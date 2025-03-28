@@ -1,0 +1,21 @@
+export const blocks = [
+  {
+    type: 'moon_walk_left',
+    message0: 'moonWalkLeft steps %1 T %2',
+    args0: [
+      {
+        type: 'input_value',
+        name: 'STEPS',
+      },
+      {
+        type: 'input_value',
+        name: 'T',
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    colour: 230,
+    tooltip: 'Make the robot walk left',
+    helpUrl: '',
+  },
+];
