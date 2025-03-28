@@ -36,3 +36,10 @@ forBlock['moon_walk_left'] = function (block, generator) {
   return code;
 };
 
+// Generator for 'moon_walk_right'
+forBlock['moon_walk_right'] = function (block, generator) {
+  const steps = generator.valueToCode(block, 'STEPS', Order.ATOMIC) || '0';
+  const t = generator.valueToCode(block, 'T', Order.ATOMIC) || '0';
+  const code = `moonWalkRight(${steps}, ${t});\n`;
+  return code;
+};
