@@ -19,6 +19,13 @@ import {save, load} from './serialization';
 import {toolbox} from './toolbox';
 import './index.css';
 
+function moonWalkLeft(steps, t) {
+  const outputDiv = document.getElementById('output');
+  const textEl = document.createElement('p');
+  textEl.innerText = `moonWalkLeft called with steps=${steps}, T=${t}`;
+  outputDiv.appendChild(textEl);
+}
+
 // Register blocks
 Blockly.common.defineBlocks(textBlocks);
 Blockly.common.defineBlocks(robotBlocks);
@@ -64,3 +71,4 @@ ws.addChangeListener((e) => {
   ) return;
   runCode();
 });
+
