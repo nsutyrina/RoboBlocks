@@ -1,21 +1,28 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 export const blocks = [
   {
     type: 'moon_walk_left',
-    message0: 'moonWalkLeft steps %1 T %2',
+    message0: 'Moon Walk Left %1 steps %2 delay %3',
     args0: [
       {
         type: 'input_value',
         name: 'STEPS',
+        check: 'Number',
       },
       {
         type: 'input_value',
-        name: 'T',
+        name: 'DELAY',
+        check: 'Number',
       },
     ],
     previousStatement: null,
     nextStatement: null,
-    colour: 230,
-    tooltip: 'Make the robot walk left',
+    colour: 290,
+    tooltip: 'Makes the robot moonwalk left.',
     helpUrl: '',
   },
 ];
