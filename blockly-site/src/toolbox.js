@@ -114,15 +114,16 @@ export const toolbox = {
         {kind: 'block', type: 'lists_reverse'},
       ],
     },
-  {
-    kind: 'category',
-    name: 'Robot',
-    categorystyle: 'logic_category',
-    contents: [
-      { kind: 'block', type: 'moon_walk_left' },
-      { kind: 'block', type: 'moon_walk_right' },
-    ],
-  },
+    {
+      kind: 'category',
+      name: 'Robot',
+      categorystyle: 'logic_category',
+      contents: [
+        { kind: 'block', type: 'moon_walk_left' },
+        { kind: 'block', type: 'moon_walk_right' },
+        { kind: 'block', type: 'walk' }, 
+      ],
+    },
     {
       kind: 'sep',
     },
@@ -140,3 +141,4 @@ export const toolbox = {
     },
   ],
 };
+
