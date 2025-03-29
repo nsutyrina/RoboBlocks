@@ -44,6 +44,29 @@ Blockly.defineBlocksWithJsonArray([
     tooltip: 'Make the robot walk right',
     helpUrl: '',
   },
+  {
+    type: 'walk',
+    message0: 'walk steps %1 T %2 dir %3',
+    args0: [
+      {
+        type: 'input_value',
+        name: 'STEPS',
+      },
+      {
+        type: 'input_value',
+        name: 'T',
+      },
+      {
+        type: 'input_value',
+        name: 'DIR',
+      },
+    ],
+    previousStatement: null,
+    nextStatement: null,
+    colour: 230,
+    tooltip: 'Make the robot walk forward or backward',
+    helpUrl: '',
+  },
 ]);
 
 export const blocks = [];
