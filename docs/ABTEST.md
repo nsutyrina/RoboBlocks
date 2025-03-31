@@ -1,5 +1,5 @@
-# A/B Test Name:  
-User Story Number:
+# A/B Test Name: Introduction Message
+User Story Number: US6
 As a user, I want to feel welcomed and engaged by the initial message so that I’m more likely to respond and continue the conversation.
 
 Metrics:
