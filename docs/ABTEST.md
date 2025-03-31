@@ -1,3 +1,38 @@
+# **A/B Test Name:** Block Coding UI: Drag & Drop vs. Button Selection
+
+**User Story Number:** US4 (Control the Robot)
+
+**Metrics:**
+- Engagement (time spent in the block coding interface)
+- Task Completion Rate (successful program execution)
+- Retention (return rate within 7 days)
+- Usability Score (post-task survey results)
+
+**Hypothesis:**
+We believe that a drag-and-drop block coding interface will result in higher engagement and task completion rates compared to a button-selection method, as it provides a more intuitive and interactive experience for users.
+
+**What problem are we trying to solve?**
+Currently, users need an intuitive way to assemble code blocks to program the robot. A common challenge is that some users find traditional button-based coding interfaces difficult to navigate, leading to frustration and abandonment. By testing drag-and-drop against button selection, we aim to determine which approach enhances user experience, particularly for younger users or those new to programming.
+
+**Experiment:**
+We will run an A/B test using Firebase Remote Config to randomly assign new users to one of two UI variations:
+- **Group A (Control):** Users interact with a button-selection interface where they tap buttons to add blocks to their program.
+- **Group B (Variant):** Users interact with a drag-and-drop interface, allowing them to move blocks freely onto a workspace.
+
+Tracking will be implemented using Firebase Analytics to measure:
+- Session duration on the block coding screen
+- Number of successfully uploaded programs to the robot
+- Number of users returning within 7 days
+- User feedback collected via a post-task survey embedded in the app
+
+**Variations:**
+- **Control (Button Selection):** Users tap buttons corresponding to programming commands, which are then added in sequence to a list.
+- **Variant (Drag-and-Drop):** Users drag coding blocks from a toolbar onto a workspace, where they can arrange them before executing the program.
+
+Design mockups and UI flows will be attached to visualize both interfaces before deployment.
+
+
+
 # A/B Test Name: Introduction Message
 User Story Number: US6
 As a user, I want to feel welcomed and engaged by the initial message so that I’m more likely to respond and continue the conversation.
