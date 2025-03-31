@@ -24,12 +24,26 @@ Hypothesis:
 Experiment:
 Variations:
 
-# A/B Test Name:  
-User Story Number:
-Metrics:  
-Hypothesis:  
-Experiment:
-Variations:
+# A/B Test Name: Homepage Background Color – Light vs. Dark Mode
+
+**User Story Number:** US4: Home Page UI
+
+**Metrics:**
+- Engagement: Time spent on the homepage.
+- Adoption: Click-through rate (CTR) on key elements (e.g., CTA buttons, navigation links).
+- Retention: Return visits within a defined period.
+
+**Hypothesis:**
+Switching to a dark-themed background may enhance contrast, reduce eye strain, and increase engagement with key elements on the homepage, leading to longer time spent and higher interaction rates.
+
+**Experiment:**
+- 50% of users see the current light background (Control - #f8efe1).
+- 50% of users see a dark background (Test - #2A2A36).
+- The experiment will run for two weeks with statistical significance set at a 95% confidence level.
+
+**Variations:**
+- A (Control): Light background with standard branding.
+- B (Test): Dark background with adjusted typography and UI contrast for readability.
 
 # A/B Test Name: Sign In Button Color – Red vs. Green
 
