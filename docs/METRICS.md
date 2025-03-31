@@ -93,7 +93,7 @@ AS a product owner,
 I WANT to track lesson completion rates,
 SO THAT I can measure how effectively users are engaging with and completing lessons.
 
-SCENARIO: Lesson Completion Metric
+SCENARIO: Lesson Completion Metric 
 GIVEN a user is taking lessons in the app,
 WHEN they complete a lesson,
 THEN the completion status of that lesson should be recorded,
