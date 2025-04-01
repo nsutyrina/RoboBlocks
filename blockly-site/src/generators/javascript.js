@@ -28,26 +28,25 @@ forBlock['add_text'] = function (block, generator) {
 
 // Generator for 'moon_walk_left'
 forBlock['moon_walk_left'] = function (block, generator) {
-  return "sendData('l');\n";
+  return "sendData(deviceId, 'l');\n";
 };
 
 // Generator for 'moon_walk_right'
 forBlock['moon_walk_right'] = function (block, generator) {
-  return "sendData('r');\n";
+  return "sendData(deviceId, 'r');\n";
 };
 
 // Generator for 'walk'
 forBlock['walk'] = function (block, generator) {
-  return "sendData('w');\n";
-};
-
-// Generator for 'dance'
-forBlock['dance'] = function (block, generator) {
-  return "sendData('d');\n";
+  return "sendData(deviceId, 'f');\n";
 };
 
 // Generator for 'walk_backward'
 forBlock['walk_backward'] = function (block, generator) {
-  return "sendData('b');\n";
+  return "sendData(deviceId, 'b');\n";
 };
 
+// Generator for 'dance'
+forBlock['dance'] = function (block, generator) {
+  return "sendData(deviceId, 'd');\n";
+};
