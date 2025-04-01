@@ -38,15 +38,15 @@ forBlock['moon_walk_right'] = function (block, generator) {
 
 // Generator for 'walk'
 forBlock['walk'] = function (block, generator) {
-  return "sendData(deviceId, 'f');\n";
-};
-
-// Generator for 'walk_backward'
-forBlock['walk_backward'] = function (block, generator) {
-  return "sendData(deviceId, 'b');\n";
+  return "sendData(deviceId, 'w');\n";
 };
 
 // Generator for 'dance'
 forBlock['dance'] = function (block, generator) {
   return "sendData(deviceId, 'd');\n";
+};
+
+// Generator for 'walk_backward'
+forBlock['walk_backward'] = function (block, generator) {
+  return "sendData(deviceId, 'b');\n";
 };
