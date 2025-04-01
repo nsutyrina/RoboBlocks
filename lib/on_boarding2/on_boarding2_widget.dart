@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -26,8 +27,11 @@ class _OnBoarding2WidgetState extends State<OnBoarding2Widget> {
     super.initState();
     _model = createModel(context, () => OnBoarding2Model());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'OnBoarding2'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -69,17 +73,16 @@ class _OnBoarding2WidgetState extends State<OnBoarding2Widget> {
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                child: Text(
-                  'Hi ${valueOrDefault<String>(
-                    _model.age?.toString(),
-                    'Name',
-                  )} Welcome to RoboBlocks! How old are you?',
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).headlineLarge.override(
-                        fontFamily: 'KoHo',
-                        fontSize: 30.0,
-                        letterSpacing: 0.0,
-                      ),
+                child: AuthUserStreamWidget(
+                  builder: (context) => Text(
+                    'Hi ${currentUserDisplayName} Welcome to RoboBlocks! How old are you?',
+                    textAlign: TextAlign.center,
+                    style: FlutterFlowTheme.of(context).headlineLarge.override(
+                          fontFamily: 'KoHo',
+                          fontSize: 30.0,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
                 ),
               ),
               Form(
@@ -101,11 +104,11 @@ class _OnBoarding2WidgetState extends State<OnBoarding2Widget> {
                                   fontFamily: 'Inter',
                                   letterSpacing: 0.0,
                                 ),
-                        hintText: 'Enter Your Age',
+                        hintText: 'Age:',
                         hintStyle:
-                            FlutterFlowTheme.of(context).displayMedium.override(
-                                  fontFamily: 'KoHo',
-                                  fontSize: 25.0,
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Inter',
+                                  fontSize: 16.0,
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
@@ -137,14 +140,15 @@ class _OnBoarding2WidgetState extends State<OnBoarding2Widget> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         filled: true,
-                        fillColor: FlutterFlowTheme.of(context).alternate,
+                        fillColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
                       ),
                       style:
                           FlutterFlowTheme.of(context).displayMedium.override(
                                 fontFamily: 'KoHo',
                                 letterSpacing: 0.0,
                               ),
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.start,
                       cursorColor: FlutterFlowTheme.of(context).primaryText,
                       validator:
                           _model.textControllerValidator.asValidator(context),
@@ -156,18 +160,21 @@ class _OnBoarding2WidgetState extends State<OnBoarding2Widget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('ON_BOARDING2_PAGE_DONE_BTN_ON_TAP');
+                    logFirebaseEvent('Button_validate_form');
                     _model.age = true;
                     if (_model.formKey.currentState == null ||
                         !_model.formKey.currentState!.validate()) {
                       safeSetState(() => _model.age = false);
                       return;
                     }
+                    logFirebaseEvent('Button_navigate_to');
 
                     context.pushNamed(HomePageWidget.routeName);
 
                     safeSetState(() {});
                   },
-                  text: 'Next',
+                  text: 'Done',
                   options: FFButtonOptions(
                     width: 300.0,
                     height: 60.0,

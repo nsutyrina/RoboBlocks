@@ -26,8 +26,11 @@ class _OnBoardingWidgetState extends State<OnBoardingWidget> {
     super.initState();
     _model = createModel(context, () => OnBoardingModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'OnBoarding'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -70,7 +73,7 @@ class _OnBoardingWidgetState extends State<OnBoardingWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: Text(
-                  'Hi! My name is Rob! What\'s your name?',
+                  getRemoteConfigString('greeting'),
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).headlineLarge.override(
                         fontFamily: 'KoHo',
@@ -98,11 +101,11 @@ class _OnBoardingWidgetState extends State<OnBoardingWidget> {
                                   fontFamily: 'Inter',
                                   letterSpacing: 0.0,
                                 ),
-                        hintText: 'Enter Your Name',
+                        hintText: 'Name:',
                         hintStyle:
                             FlutterFlowTheme.of(context).displayMedium.override(
                                   fontFamily: 'KoHo',
-                                  fontSize: 25.0,
+                                  fontSize: 16.0,
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
@@ -134,14 +137,15 @@ class _OnBoardingWidgetState extends State<OnBoardingWidget> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         filled: true,
-                        fillColor: FlutterFlowTheme.of(context).alternate,
+                        fillColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
                       ),
                       style:
                           FlutterFlowTheme.of(context).displayMedium.override(
                                 fontFamily: 'KoHo',
                                 letterSpacing: 0.0,
                               ),
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.start,
                       cursorColor: FlutterFlowTheme.of(context).primaryText,
                       validator:
                           _model.textControllerValidator.asValidator(context),
@@ -153,12 +157,15 @@ class _OnBoardingWidgetState extends State<OnBoardingWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('ON_BOARDING_PAGE_NEXT_BTN_ON_TAP');
+                    logFirebaseEvent('Button_validate_form');
                     _model.name = true;
                     if (_model.formKey.currentState == null ||
                         !_model.formKey.currentState!.validate()) {
                       safeSetState(() => _model.name = false);
                       return;
                     }
+                    logFirebaseEvent('Button_navigate_to');
 
                     context.pushNamed(OnBoarding2Widget.routeName);
 

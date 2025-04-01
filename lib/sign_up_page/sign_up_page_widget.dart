@@ -28,6 +28,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
     super.initState();
     _model = createModel(context, () => SignUpPageModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'SignUpPage'});
     _model.signupEmailTextController ??= TextEditingController();
     _model.signupEmailFocusNode ??= FocusNode();
 
@@ -36,6 +37,8 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
 
     _model.signupConfirmPasswordTextController ??= TextEditingController();
     _model.signupConfirmPasswordFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -69,6 +72,9 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                         EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('SIGN_UP_PAGE_PAGE__BTN_ON_TAP');
+                        logFirebaseEvent('Button_navigate_to');
+
                         context.pushNamed(LoginPageWidget.routeName);
                       },
                       text: '',
@@ -354,6 +360,8 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('SIGN_UP_PAGE_PAGE_SIGN_UP_BTN_ON_TAP');
+                    logFirebaseEvent('Button_auth');
                     GoRouter.of(context).prepareAuthEvent();
                     if (_model.signupPasswordTextController.text !=
                         _model.signupConfirmPasswordTextController.text) {
@@ -386,8 +394,18 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                           createdTime: getCurrentTimestamp,
                         ));
 
+                    logFirebaseEvent('Button_navigate_to');
+
                     context.pushNamedAuth(
                         OnBoardingWidget.routeName, context.mounted);
+
+                    logFirebaseEvent('Button_google_analytics_event');
+                    logFirebaseEvent(
+                      'sign_up',
+                      parameters: {
+                        'Param 22': 'signupButton',
+                      },
+                    );
                   },
                   text: 'Sign Up',
                   options: FFButtonOptions(
@@ -431,6 +449,8 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
+                    logFirebaseEvent('SIGN_UP_SignInWithGoogleButton_ON_TAP');
+                    logFirebaseEvent('SignInWithGoogleButton_auth');
                     GoRouter.of(context).prepareAuthEvent();
                     final user = await authManager.signInWithGoogle(context);
                     if (user == null) {

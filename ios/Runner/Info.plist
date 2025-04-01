@@ -28,7 +28,7 @@
             <string>Editor</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <!--FF_REVERSED_CLIENT_ID-->
+                <string>com.googleusercontent.apps.180979576346-lfekmnmqujai5fsd003s7p6r2s00ebi0</string>
                 
             </array>
         </dict>
@@ -54,6 +54,10 @@
 	<true/>
 
 
+	<key>NSBluetoothAlwaysUsageDescription</key>
+    <string>Bluetooth permission is required to connect with the robot.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>Location permission is required to connect with the robot.</string>
 
 
 

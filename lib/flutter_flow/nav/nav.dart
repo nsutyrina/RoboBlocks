@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
+import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -76,13 +79,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
         ),
         FFRoute(
           name: LoginPageWidget.routeName,
@@ -92,7 +95,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: HomePageWidget.routeName,
           path: HomePageWidget.routePath,
-          builder: (context, params) => HomePageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'HomePage')
+              : HomePageWidget(),
         ),
         FFRoute(
           name: SignUpPageWidget.routeName,
@@ -108,6 +113,55 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: OnBoarding2Widget.routeName,
           path: OnBoarding2Widget.routePath,
           builder: (context, params) => OnBoarding2Widget(),
+        ),
+        FFRoute(
+          name: LessonsWidget.routeName,
+          path: LessonsWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Lessons')
+              : LessonsWidget(),
+        ),
+        FFRoute(
+          name: MoveForwardLesson1Widget.routeName,
+          path: MoveForwardLesson1Widget.routePath,
+          builder: (context, params) => MoveForwardLesson1Widget(),
+        ),
+        FFRoute(
+          name: LessonTemplateWidget.routeName,
+          path: LessonTemplateWidget.routePath,
+          builder: (context, params) => LessonTemplateWidget(),
+        ),
+        FFRoute(
+          name: LessonTemplateCopyWidget.routeName,
+          path: LessonTemplateCopyWidget.routePath,
+          builder: (context, params) => LessonTemplateCopyWidget(),
+        ),
+        FFRoute(
+          name: LessonPageTestWidget.routeName,
+          path: LessonPageTestWidget.routePath,
+          builder: (context, params) => LessonPageTestWidget(),
+        ),
+        FFRoute(
+          name: ConnectBTWidget.routeName,
+          path: ConnectBTWidget.routePath,
+          builder: (context, params) => ConnectBTWidget(),
+        ),
+        FFRoute(
+          name: BTDeviceWidget.routeName,
+          path: BTDeviceWidget.routePath,
+          builder: (context, params) => BTDeviceWidget(
+            connectedDevice: params.getParam(
+              'connectedDevice',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: BTDevicesStruct.fromSerializableMap,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: LessonPageTestCopyWidget.routeName,
+          path: LessonPageTestCopyWidget.routePath,
+          builder: (context, params) => LessonPageTestCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -227,6 +281,7 @@ class FFParameters {
     ParamType type, {
     bool isList = false,
     List<String>? collectionNamePath,
+    StructBuilder<T>? structBuilder,
   }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -245,6 +300,7 @@ class FFParameters {
       type,
       isList,
       collectionNamePath: collectionNamePath,
+      structBuilder: structBuilder,
     );
   }
 }

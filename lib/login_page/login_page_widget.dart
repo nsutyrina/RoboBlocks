@@ -27,11 +27,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
     super.initState();
     _model = createModel(context, () => LoginPageModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'LoginPage'});
     _model.loginEmailTextController ??= TextEditingController();
     _model.loginEmailFocusNode ??= FocusNode();
 
     _model.loginPasswordTextController ??= TextEditingController();
     _model.loginPasswordFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -153,6 +156,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               fontSize: 14.0,
                               letterSpacing: 0.0,
                             ),
+                        textAlign: TextAlign.start,
                         cursorColor: FlutterFlowTheme.of(context).primaryText,
                         validator: _model.loginEmailTextControllerValidator
                             .asValidator(context),
@@ -244,12 +248,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('LOGIN_PAGE_PAGE_LoginButton_ON_TAP');
+                        logFirebaseEvent('LoginButton_validate_form');
                         _model.validated = true;
                         if (_model.formKey.currentState == null ||
                             !_model.formKey.currentState!.validate()) {
                           safeSetState(() => _model.validated = false);
                           return;
                         }
+                        logFirebaseEvent('LoginButton_auth');
                         GoRouter.of(context).prepareAuthEvent();
 
                         final user = await authManager.signInWithEmail(
@@ -312,6 +319,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
+                  logFirebaseEvent('LOGIN_SignInWithGoogleButton_ON_TAP');
+                  logFirebaseEvent('SignInWithGoogleButton_auth');
                   GoRouter.of(context).prepareAuthEvent();
                   final user = await authManager.signInWithGoogle(context);
                   if (user == null) {
@@ -390,6 +399,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
               child: FFButtonWidget(
                 onPressed: () async {
+                  logFirebaseEvent('LOGIN_PAGE_PAGE_SIGN_UP_BTN_ON_TAP');
+                  logFirebaseEvent('Button_navigate_to');
+
                   context.pushNamed(SignUpPageWidget.routeName);
                 },
                 text: 'Sign Up',

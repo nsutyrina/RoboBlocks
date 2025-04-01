@@ -12,7 +12,20 @@
           "package_name": "com.mycompany.roboblocks"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "180979576346-bvt2ior7p8bldgig4te6f94kuf2dphmq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.roboblocks",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "180979576346-487elbv7ee50ldoa6okbtdmkpovfijt0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBOrxz64gSLFEKmUIb-RNrRXMaD7KDkRaY"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180979576346-487elbv7ee50ldoa6okbtdmkpovfijt0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "180979576346-lfekmnmqujai5fsd003s7p6r2s00ebi0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.roboblocks"
+              }
+            }
+          ]
         }
       }
     }
