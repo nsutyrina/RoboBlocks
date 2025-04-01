@@ -19,45 +19,16 @@ import {save, load} from './serialization';
 import {toolbox} from './toolbox';
 import './index.css';
 
-// Dummy implementations so the code doesn’t crash
-function moonWalkLeft(steps, t) {
-  const outputDiv = document.getElementById('output');
-  const textEl = document.createElement('p');
-  textEl.innerText = `moonWalkLeft called with steps=${steps}, T=${t}`;
-  outputDiv.appendChild(textEl);
-}
-
-function moonWalkRight(steps, t) {
-  const outputDiv = document.getElementById('output');
-  const msg = `moonWalkRight called with steps=${steps}, T=${t}`;
-  const textEl = document.createElement('p');
-  textEl.innerText = msg;
-  outputDiv.appendChild(textEl);
-}
-
-function walk(steps, t, dir) {
-  const outputDiv = document.getElementById('output');
-  const textEl = document.createElement('p');
-  textEl.innerText = `walk called with steps=${steps}, T=${t}, dir=${dir}`;
-  outputDiv.appendChild(textEl);
-}
-
-function dance() {
-  const outputDiv = document.getElementById('output');
-  const textEl = document.createElement('p');
-  textEl.innerText = `dance called`;
-  outputDiv.appendChild(textEl);
-}
-
-function walkBackward() {
-  const outputDiv = document.getElementById('output');
-  const textEl = document.createElement('p');
-  textEl.innerText = `walkBackward called`;
-  outputDiv.appendChild(textEl);
-}
-
-function sendData(char) {
-  window.parent.postMessage(char, '*');
+// 🔥 Send command and deviceId to FlutterFlow
+function sendData(deviceId, char) {
+  window.parent.postMessage(
+    {
+      type: 'sendData',
+      deviceId: deviceId,
+      char: char,
+    },
+    '*'
+  );
 }
 
 // Register blocks
@@ -91,6 +62,7 @@ const runCode = () => {
 load(ws);
 runCode();
 
+// Auto-save and auto-run
 ws.addChangeListener((e) => {
   if (e.isUiEvent) return;
   save(ws);
@@ -104,5 +76,4 @@ ws.addChangeListener((e) => {
   ) return;
   runCode();
 });
-
 
