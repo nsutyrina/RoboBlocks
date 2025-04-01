@@ -19,17 +19,58 @@ import {save, load} from './serialization';
 import {toolbox} from './toolbox';
 import './index.css';
 
-// 🔥 Send command and deviceId to FlutterFlow
+// 🔌 GLOBAL deviceId injected by FlutterFlow
+let deviceId = '';
+
 function sendData(deviceId, char) {
   window.parent.postMessage(
     {
       type: 'sendData',
-      deviceId: deviceId,
-      char: char,
+      deviceId,
+      char,
     },
     '*'
   );
 }
+
+// Dummy implementations for local testing (optional to keep)
+function moonWalkLeft(steps, t) {
+  const outputDiv = document.getElementById('output');
+  const textEl = document.createElement('p');
+  textEl.innerText = `moonWalkLeft called with steps=${steps}, T=${t}`;
+  outputDiv.appendChild(textEl);
+}
+function moonWalkRight(steps, t) {
+  const outputDiv = document.getElementById('output');
+  const textEl = document.createElement('p');
+  textEl.innerText = `moonWalkRight called with steps=${steps}, T=${t}`;
+  outputDiv.appendChild(textEl);
+}
+function walk(steps, t, dir) {
+  const outputDiv = document.getElementById('output');
+  const textEl = document.createElement('p');
+  textEl.innerText = `walk called with steps=${steps}, T=${t}, dir=${dir}`;
+  outputDiv.appendChild(textEl);
+}
+function dance() {
+  const outputDiv = document.getElementById('output');
+  const textEl = document.createElement('p');
+  textEl.innerText = `dance called`;
+  outputDiv.appendChild(textEl);
+}
+function walkBackward() {
+  const outputDiv = document.getElementById('output');
+  const textEl = document.createElement('p');
+  textEl.innerText = `walkBackward called`;
+  outputDiv.appendChild(textEl);
+}
+
+window.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'setDeviceId') {
+    deviceId = event.data.deviceId;
+    console.log('Received deviceId:', deviceId);
+  }
+});
 
 // Register blocks
 Blockly.common.defineBlocks(textBlocks);
@@ -62,7 +103,6 @@ const runCode = () => {
 load(ws);
 runCode();
 
-// Auto-save and auto-run
 ws.addChangeListener((e) => {
   if (e.isUiEvent) return;
   save(ws);
