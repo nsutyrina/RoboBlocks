@@ -28,25 +28,15 @@ forBlock['add_text'] = function (block, generator) {
 
 // Generator for 'moon_walk_left'
 forBlock['moon_walk_left'] = function (block, generator) {
-  const steps = generator.valueToCode(block, 'STEPS', Order.ATOMIC) || '0';
-  const t = generator.valueToCode(block, 'T', Order.ATOMIC) || '0';
-  const code = `moonWalkLeft(${steps}, ${t});\n`;
-  return code;
+  return "sendData('l');\n";
 };
 
 // Generator for 'moon_walk_right'
 forBlock['moon_walk_right'] = function (block, generator) {
-  const steps = generator.valueToCode(block, 'STEPS', Order.ATOMIC) || '0';
-  const t = generator.valueToCode(block, 'T', Order.ATOMIC) || '0';
-  const code = `moonWalkRight(${steps}, ${t});\n`;
-  return code;
+  return "sendData('r');\n";
 };
 
 // Generator for 'walk'
 forBlock['walk'] = function (block, generator) {
-  const steps = generator.valueToCode(block, 'STEPS', Order.ATOMIC) || '0';
-  const t = generator.valueToCode(block, 'T', Order.ATOMIC) || '0';
-  const dir = generator.valueToCode(block, 'DIR', Order.ATOMIC) || '1';
-  const code = `walk(${steps}, ${t}, ${dir});\n`;
-  return code;
+  return "sendData('w');\n";
 };
