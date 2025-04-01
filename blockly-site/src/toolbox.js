@@ -122,6 +122,8 @@ export const toolbox = {
         { kind: 'block', type: 'moon_walk_left' },
         { kind: 'block', type: 'moon_walk_right' },
         { kind: 'block', type: 'walk' }, 
+        { kind: 'block', type: 'dance' },
+        { kind: 'block', type: 'walk_backward' },
       ],
     },
     {
