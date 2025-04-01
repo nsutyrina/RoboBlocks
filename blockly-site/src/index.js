@@ -42,6 +42,13 @@ function walk(steps, t, dir) {
   outputDiv.appendChild(textEl);
 }
 
+function sendData(char) {
+  const outputDiv = document.getElementById('output');
+  const textEl = document.createElement('p');
+  textEl.innerText = `sendData('${char}') called`;
+  outputDiv.appendChild(textEl);
+}
+
 // Register blocks
 Blockly.common.defineBlocks(textBlocks);
 Blockly.common.defineBlocks(robotBlocks);
