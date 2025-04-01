@@ -57,10 +57,7 @@ function walkBackward() {
 }
 
 function sendData(char) {
-  const outputDiv = document.getElementById('output');
-  const textEl = document.createElement('p');
-  textEl.innerText = `sendData('${char}') called`;
-  outputDiv.appendChild(textEl);
+  window.parent.postMessage(char, '*');
 }
 
 // Register blocks
