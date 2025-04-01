@@ -40,3 +40,14 @@ forBlock['moon_walk_right'] = function (block, generator) {
 forBlock['walk'] = function (block, generator) {
   return "sendData('w');\n";
 };
+
+// Generator for 'dance'
+forBlock['dance'] = function (block, generator) {
+  return "sendData('d');\n";
+};
+
+// Generator for 'walk_backward'
+forBlock['walk_backward'] = function (block, generator) {
+  return "sendData('b');\n";
+};
+
