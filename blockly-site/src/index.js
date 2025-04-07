@@ -23,6 +23,14 @@ import './index.css';
 let deviceId = '';
 
 function sendData(deviceId, char) {
+  // This is the important part: send to Flutter via InAppWebView
+  if (window.flutter_inappwebview) {
+    window.flutter_inappwebview.callHandler('blocklyMessage', char);
+  } else {
+    console.warn('Not running inside Flutter WebView');
+  }
+
+  // Still send to parent for web testing/debugging
   window.parent.postMessage(
     {
       type: 'sendData',
@@ -65,6 +73,7 @@ function walkBackward() {
   outputDiv.appendChild(textEl);
 }
 
+// Receive the device ID from FlutterFlow
 window.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'setDeviceId') {
     deviceId = event.data.deviceId;
@@ -80,7 +89,7 @@ Blockly.common.defineBlocks(robotBlocks);
 Object.assign(javascriptGenerator.forBlock, textGen);
 Object.assign(javascriptGenerator.forBlock, robotGen);
 
-// Inject Blockly
+// Inject Blockly into page
 const codeDiv = document.getElementById('generatedCode').firstChild;
 const outputDiv = document.getElementById('output');
 const blocklyDiv = document.getElementById('blocklyDiv');
@@ -103,6 +112,7 @@ const runCode = () => {
 load(ws);
 runCode();
 
+// Save and run on any change
 ws.addChangeListener((e) => {
   if (e.isUiEvent) return;
   save(ws);
@@ -116,4 +126,3 @@ ws.addChangeListener((e) => {
   ) return;
   runCode();
 });
-
