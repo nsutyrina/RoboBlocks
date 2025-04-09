@@ -22,15 +22,16 @@ import './index.css';
 // 🔌 GLOBAL deviceId injected by FlutterFlow
 let deviceId = '';
 
+// Send data to FlutterFlow
 function sendData(deviceId, char) {
-  // This is the important part: send to Flutter via InAppWebView
+  // Send to Flutter via InAppWebView
   if (window.flutter_inappwebview) {
     window.flutter_inappwebview.callHandler('blocklyMessage', char);
   } else {
     console.warn('Not running inside Flutter WebView');
   }
 
-  // Still send to parent for web testing/debugging
+  // Also send to parent for browser debugging/testing
   window.parent.postMessage(
     {
       type: 'sendData',
@@ -41,7 +42,7 @@ function sendData(deviceId, char) {
   );
 }
 
-// Dummy implementations for local testing (optional to keep)
+// Dummy implementations for testing
 function moonWalkLeft(steps, t) {
   const outputDiv = document.getElementById('output');
   const textEl = document.createElement('p');
@@ -73,56 +74,50 @@ function walkBackward() {
   outputDiv.appendChild(textEl);
 }
 
-// Receive the device ID from FlutterFlow
+// Receive deviceId from FlutterFlow
 window.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'setDeviceId') {
     deviceId = event.data.deviceId;
-    console.log('Received deviceId:', deviceId);
+    console.log('✅ Received deviceId:', deviceId);
   }
 });
 
-// Register blocks
+// Register blocks and generators
 Blockly.common.defineBlocks(textBlocks);
 Blockly.common.defineBlocks(robotBlocks);
-
-// Register code generators
 Object.assign(javascriptGenerator.forBlock, textGen);
 Object.assign(javascriptGenerator.forBlock, robotGen);
 
-// Inject Blockly into page
+// Inject Blockly into the page
 const codeDiv = document.getElementById('generatedCode').firstChild;
 const outputDiv = document.getElementById('output');
 const blocklyDiv = document.getElementById('blocklyDiv');
 const ws = Blockly.inject(blocklyDiv, {toolbox});
 
-// Run the generated JavaScript
+// Run the generated code manually
 const runCode = () => {
   const code = javascriptGenerator.workspaceToCode(ws);
   codeDiv.innerText = code;
   outputDiv.innerHTML = '';
 
   try {
-    eval(code);
+    eval(code); // Executes functions like sendData()
   } catch (e) {
     outputDiv.innerHTML = `<pre style="color:red;">${e}</pre>`;
   }
 };
 
-// Load initial state
+// Initial load
 load(ws);
 runCode();
 
-// Save and run on any change
+// Save state on changes (but don’t auto-run)
 ws.addChangeListener((e) => {
   if (e.isUiEvent) return;
   save(ws);
 });
 
-ws.addChangeListener((e) => {
-  if (
-    e.isUiEvent ||
-    e.type === Blockly.Events.FINISHED_LOADING ||
-    ws.isDragging()
-  ) return;
+// Manual "Run Code" button
+document.getElementById('runButton').addEventListener('click', () => {
   runCode();
 });
