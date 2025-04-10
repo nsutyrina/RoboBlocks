@@ -22,7 +22,37 @@ import './index.css';
 // 🔌 GLOBAL deviceId injected by FlutterFlow
 let deviceId = '';
 
-// Send data to FlutterFlow
+function sendDance() {
+  if (window.flutter_inappwebview) {
+    window.flutter_inappwebview.callHandler('sendDance');
+  }
+}
+
+function sendForward() {
+  if (window.flutter_inappwebview) {
+    window.flutter_inappwebview.callHandler('sendForward');
+  }
+}
+
+function sendBackward() {
+  if (window.flutter_inappwebview) {
+    window.flutter_inappwebview.callHandler('sendBackward');
+  }
+}
+
+function sendLeft() {
+  if (window.flutter_inappwebview) {
+    window.flutter_inappwebview.callHandler('sendLeft');
+  }
+}
+
+function sendRight() {
+  if (window.flutter_inappwebview) {
+    window.flutter_inappwebview.callHandler('sendRight');
+  }
+}
+
+// For debugging if needed
 function sendData(deviceId, char) {
   console.log('📤 Sending to Flutter:', { deviceId, char });
 
@@ -31,28 +61,20 @@ function sendData(deviceId, char) {
       'onReceivedJsMessage',
       JSON.stringify({ deviceId, char })
     );
-  } else {
-    console.warn('⚠️ Not running inside Flutter WebView');
   }
 
-  // For debugging in browser
   window.parent.postMessage(
-    {
-      type: 'sendData',
-      deviceId,
-      char,
-    },
+    { type: 'sendData', deviceId, char },
     '*'
   );
 
-  // Display log in UI 
   const debugLog = document.getElementById('flutterDebugLog');
   if (debugLog) {
     debugLog.innerText = `📤 Sent: '${char}' to Flutter (deviceId: ${deviceId})`;
   }
 }
 
-// Dummy implementations for testing
+// Dummy implementations for testing output (optional)
 function moonWalkLeft(steps, t) {
   const outputDiv = document.getElementById('output');
   const textEl = document.createElement('p');
@@ -88,7 +110,7 @@ function walkBackward() {
 window.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'setDeviceId') {
     deviceId = event.data.deviceId;
-    console.log('Received deviceId:', deviceId);
+    console.log('✅ Received deviceId:', deviceId);
   }
 });
 
@@ -111,7 +133,7 @@ const runCode = () => {
   outputDiv.innerHTML = '';
 
   try {
-    eval(code); // Executes functions like sendData()
+    eval(code); // Executes functions like sendDance()
   } catch (e) {
     outputDiv.innerHTML = `<pre style="color:red;">${e}</pre>`;
   }
