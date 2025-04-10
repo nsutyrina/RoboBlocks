@@ -24,14 +24,18 @@ let deviceId = '';
 
 // Send data to FlutterFlow
 function sendData(deviceId, char) {
-  // Send to Flutter via InAppWebView
+  console.log('📤 Sending to Flutter:', { deviceId, char });
+
   if (window.flutter_inappwebview) {
-    window.flutter_inappwebview.callHandler('blocklyMessage', char);
+    window.flutter_inappwebview.callHandler(
+      'onReceivedJsMessage',
+      JSON.stringify({ deviceId, char })
+    );
   } else {
-    console.warn('Not running inside Flutter WebView');
+    console.warn('⚠️ Not running inside Flutter WebView');
   }
 
-  // Also send to parent for browser debugging/testing
+  // For debugging in browser
   window.parent.postMessage(
     {
       type: 'sendData',
@@ -40,6 +44,12 @@ function sendData(deviceId, char) {
     },
     '*'
   );
+
+  // Display log in UI 
+  const debugLog = document.getElementById('flutterDebugLog');
+  if (debugLog) {
+    debugLog.innerText = `📤 Sent: '${char}' to Flutter (deviceId: ${deviceId})`;
+  }
 }
 
 // Dummy implementations for testing
@@ -78,7 +88,7 @@ function walkBackward() {
 window.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'setDeviceId') {
     deviceId = event.data.deviceId;
-    console.log('✅ Received deviceId:', deviceId);
+    console.log('Received deviceId:', deviceId);
   }
 });
 
