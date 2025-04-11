@@ -20,7 +20,7 @@ import {toolbox} from './toolbox';
 import './index.css';
 
 // 🔌 Global state from Flutter
-let deviceId = '';
+let deviceId = '48:87:2D:F1:08:B6'; // 👈 fallback deviceId for testing
 let isFlutterReady = false;
 let isDeviceIdReady = false;
 const commandQueue = [];
@@ -35,7 +35,7 @@ window.addEventListener('flutterInAppWebViewPlatformReady', () => {
 // 📩 Receive deviceId from Flutter
 window.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'setDeviceId') {
-    deviceId = event.data.deviceId;
+    deviceId = event.data.deviceId || deviceId; // 👈 fallback used if Flutter sends blank
     isDeviceIdReady = true;
     logDebug(`✅ Received deviceId from Flutter: ${deviceId}`);
     flushCommandQueue();
@@ -70,7 +70,7 @@ function sendFlutterCommand(char) {
 
 // ⏱️ Flush any queued commands once ready
 function flushCommandQueue() {
-  if (!isFlutterReady || !isDeviceIdReady) return;
+  if (!isFlutterReady || !deviceId) return;
   logDebug(`🚀 Flushing ${commandQueue.length} queued command(s)...`);
   while (commandQueue.length > 0) {
     const char = commandQueue.shift();
@@ -129,5 +129,3 @@ ws.addChangeListener((e) => {
 document.getElementById('runButton').addEventListener('click', () => {
   runCode();
 });
-
-
