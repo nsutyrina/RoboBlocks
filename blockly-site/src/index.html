@@ -1,59 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>RoboBlocks - Learn to Code Robots!</title>
+    <title>RoboBlocks</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
     <style>
-      body {
-        font-family: sans-serif;
+      html, body {
+        height: 100%;
         margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #f9f9f9;
-      }
-      h1 {
-        margin: 20px;
-      }
-      #pageContainer {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        padding: 10px;
-        gap: 20px;
+        font-family: sans-serif;
+        background: #f0f0f0;
       }
       #blocklyDiv {
-        height: 500px;
-        width: 60%;
-        background-color: white;
-        border: 1px solid #ccc;
+        height: 400px;
+        width: 100%;
       }
-      #outputPane {
-        width: 35%;
-        height: 500px;
-        background-color: #f0f0f0;
+      #generatedCode pre {
+        white-space: pre-wrap;
+        background: #e0e0e0;
+        padding: 10px;
+        border-radius: 5px;
+        font-family: monospace;
+      }
+      #runButton {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+      #output {
+        margin: 10px;
         padding: 10px;
         border: 1px solid #ccc;
-        overflow: auto;
+        background-color: #fff;
+        font-family: monospace;
+      }
+      #flutterDebugLog {
+        margin: 10px;
+        padding: 10px;
+        font-family: monospace;
+        background: #f9f9f9;
+        border: 1px solid #ccc;
+        max-height: 150px;
+        overflow-y: auto;
+        white-space: pre-wrap;
       }
     </style>
   </head>
+
   <body>
-    <h1>🚀 RoboBlocks Playground</h1>
-    <div id="pageContainer">
-      <div id="outputPane">
-        <h3>Generated Code</h3>
-        <pre id="generatedCode"><code></code></pre>
-        <div id="output"></div>
-      </div>
-      <div id="blocklyDiv"></div>
+    <h2 style="margin: 10px;">🤖 RoboBlocks Blockly Web</h2>
+
+    <div id="blocklyDiv"></div>
+
+    <button id="runButton">▶️ Run Code</button>
+
+    <div id="generatedCode"><pre></pre></div>
+
+    <div id="output"></div>
+
+    <!-- Visual debug log for Flutter messages -->
+    <div id="flutterDebugLog">
+      <strong>📋 Flutter Debug Log</strong>
     </div>
 
-    <div style="margin: 20px;">
-      <button id="runButton" style="padding: 10px 20px; font-size: 16px;">
-        ▶️ Run Code
-      </button>
-    </div>
+    <!-- Your index.js script -->
+    <script type="module" src="index.js"></script>
   </body>
 </html>
