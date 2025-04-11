@@ -73,19 +73,22 @@ class AppStateNotifier extends ChangeNotifier {
   }
 }
 
-GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
+GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
+    GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? entryPage ?? NavBarPage()
+          : LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? entryPage ?? NavBarPage()
+              : LoginPageWidget(),
         ),
         FFRoute(
           name: LoginPageWidget.routeName,
@@ -97,7 +100,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: HomePageWidget.routePath,
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'HomePage')
-              : HomePageWidget(),
+              : HomePageWidget(
+                  lesson1Complete: params.getParam(
+                    'lesson1Complete',
+                    ParamType.bool,
+                  ),
+                ),
         ),
         FFRoute(
           name: SignUpPageWidget.routeName,
@@ -132,14 +140,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => LessonTemplateWidget(),
         ),
         FFRoute(
-          name: LessonTemplateCopyWidget.routeName,
-          path: LessonTemplateCopyWidget.routePath,
-          builder: (context, params) => LessonTemplateCopyWidget(),
-        ),
-        FFRoute(
-          name: LessonPageTestWidget.routeName,
-          path: LessonPageTestWidget.routePath,
-          builder: (context, params) => LessonPageTestWidget(),
+          name: BlocklyPageTestWidget.routeName,
+          path: BlocklyPageTestWidget.routePath,
+          builder: (context, params) => BlocklyPageTestWidget(
+            connectedDevice: params.getParam(
+              'connectedDevice',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: BTDevicesStruct.fromSerializableMap,
+            ),
+          ),
         ),
         FFRoute(
           name: ConnectBTWidget.routeName,
@@ -159,9 +169,56 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: LessonPageTestCopyWidget.routeName,
-          path: LessonPageTestCopyWidget.routePath,
-          builder: (context, params) => LessonPageTestCopyWidget(),
+          name: LoginPageCopyWidget.routeName,
+          path: LoginPageCopyWidget.routePath,
+          builder: (context, params) => LoginPageCopyWidget(),
+        ),
+        FFRoute(
+          name: Lesson1Page1Widget.routeName,
+          path: Lesson1Page1Widget.routePath,
+          builder: (context, params) => Lesson1Page1Widget(),
+        ),
+        FFRoute(
+          name: Lesson1Page2Widget.routeName,
+          path: Lesson1Page2Widget.routePath,
+          builder: (context, params) => Lesson1Page2Widget(),
+        ),
+        FFRoute(
+          name: Lesson1Page3Widget.routeName,
+          path: Lesson1Page3Widget.routePath,
+          builder: (context, params) => Lesson1Page3Widget(),
+        ),
+        FFRoute(
+          name: Lesson1Page4Widget.routeName,
+          path: Lesson1Page4Widget.routePath,
+          builder: (context, params) => Lesson1Page4Widget(
+            connectedDevice: params.getParam(
+              'connectedDevice',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: BTDevicesStruct.fromSerializableMap,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: Lesson2Widget.routeName,
+          path: Lesson2Widget.routePath,
+          builder: (context, params) => Lesson2Widget(),
+        ),
+        FFRoute(
+          name: Lesson2CopyWidget.routeName,
+          path: Lesson2CopyWidget.routePath,
+          builder: (context, params) => Lesson2CopyWidget(),
+        ),
+        FFRoute(
+          name: Lesson2CopyCopyWidget.routeName,
+          path: Lesson2CopyCopyWidget.routePath,
+          builder: (context, params) => Lesson2CopyCopyWidget(),
+        ),
+        FFRoute(
+          name: Lesson2CopyCopyCopyWidget.routeName,
+          path: Lesson2CopyCopyCopyWidget.routePath,
+          builder: (context, params) => Lesson2CopyCopyCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

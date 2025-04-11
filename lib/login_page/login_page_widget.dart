@@ -100,6 +100,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     child: Container(
                       width: 300.0,
                       child: TextFormField(
+                        key: ValueKey('loginEmail_gkw6'),
                         controller: _model.loginEmailTextController,
                         focusNode: _model.loginEmailFocusNode,
                         autofocus: false,
@@ -169,6 +170,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     child: Container(
                       width: 300.0,
                       child: TextFormField(
+                        key: ValueKey('loginPassword_ps56'),
                         controller: _model.loginPasswordTextController,
                         focusNode: _model.loginPasswordFocusNode,
                         autofocus: false,
@@ -247,6 +249,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                     child: FFButtonWidget(
+                      key: ValueKey('LoginButton_i83y'),
                       onPressed: () async {
                         logFirebaseEvent('LOGIN_PAGE_PAGE_LoginButton_ON_TAP');
                         logFirebaseEvent('LoginButton_validate_form');

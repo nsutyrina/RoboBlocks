@@ -12,7 +12,12 @@ import 'home_page_model.dart';
 export 'home_page_model.dart';
 
 class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({super.key});
+  const HomePageWidget({
+    super.key,
+    bool? lesson1Complete,
+  }) : this.lesson1Complete = lesson1Complete ?? false;
+
+  final bool lesson1Complete;
 
   static String routeName = 'HomePage';
   static String routePath = '/homePage';
@@ -245,6 +250,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                 child: FFButtonWidget(
+                  key: ValueKey('Button_ijqa'),
                   onPressed: () async {
                     logFirebaseEvent('HOME_PAGE_PAGE_CONNECT_ROBOT_BTN_ON_TAP');
                     logFirebaseEvent('Button_navigate_to');
@@ -310,66 +316,78 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             width: 1.5,
                           ),
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 10.0, 60.0, 0.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  'assets/images/image_3.png',
-                                  width: 45.0,
-                                  height: 45.0,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 20.0, 20.0, 0.0),
-                              child: Text(
-                                'Move Forward',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Inter',
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                            ),
-                            Opacity(
-                              opacity: 0.6,
-                              child: Padding(
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            logFirebaseEvent(
+                                'HOME_PAGE_PAGE_Column_ouskqdl3_ON_TAP');
+                            logFirebaseEvent('Column_navigate_to');
+
+                            context.pushNamed(Lesson1Page1Widget.routeName);
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 15.0, 60.0, 0.0),
-                                child: Container(
-                                  width: 45.0,
-                                  height: 15.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  child: Text(
-                                    '12/100',
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          fontSize: 12.0,
-                                          letterSpacing: 0.0,
-                                        ),
+                                    0.0, 10.0, 60.0, 0.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/image_3.png',
+                                    width: 45.0,
+                                    height: 45.0,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 20.0, 0.0),
+                                child: Text(
+                                  'Connect Robot',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'KoHo',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  if (!widget.lesson1Complete)
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: Icon(
+                                        Icons.keyboard_arrow_right_sharp,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 30.0,
+                                      ),
+                                    ),
+                                  if (widget.lesson1Complete)
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: Icon(
+                                        Icons.check,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 24.0,
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

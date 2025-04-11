@@ -1,5 +1,8 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'lessons_model.dart';
 export 'lessons_model.dart';
@@ -65,7 +68,45 @@ class _LessonsWidgetState extends State<LessonsWidget> {
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            children: [],
+            children: [
+              Align(
+                alignment: AlignmentDirectional(0.0, 0.0),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    logFirebaseEvent('LESSONS_PAGE_BUTTON_BTN_ON_TAP');
+                    logFirebaseEvent('Button_navigate_to');
+
+                    context.pushNamed(
+                      BlocklyPageTestWidget.routeName,
+                      queryParameters: {
+                        'connectedDevice': serializeParam(
+                          BTDevicesStruct(
+                            id: '',
+                          ),
+                          ParamType.DataStruct,
+                        ),
+                      }.withoutNulls,
+                    );
+                  },
+                  text: 'Button',
+                  options: FFButtonOptions(
+                    height: 40.0,
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    iconPadding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: FlutterFlowTheme.of(context).primary,
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Inter Tight',
+                          color: Colors.white,
+                          letterSpacing: 0.0,
+                        ),
+                    elevation: 0.0,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

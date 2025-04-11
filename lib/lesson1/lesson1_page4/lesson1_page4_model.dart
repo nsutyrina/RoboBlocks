@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'lesson_page_test_copy_widget.dart' show LessonPageTestCopyWidget;
+import '/index.dart';
+import 'lesson1_page4_widget.dart' show Lesson1Page4Widget;
 import 'package:flutter/material.dart';
 
-class LessonPageTestCopyModel
-    extends FlutterFlowModel<LessonPageTestCopyWidget> {
+class Lesson1Page4Model extends FlutterFlowModel<Lesson1Page4Widget> {
   @override
   void initState(BuildContext context) {}
 

@@ -178,6 +178,10 @@ class _ConnectBTWidgetState extends State<ConnectBTWidget> {
                           onPressed: () async {
                             logFirebaseEvent(
                                 'CONNECT_B_T_PAGE_RETRY_BTN_ON_TAP');
+                            logFirebaseEvent('Button_request_permissions');
+                            await requestPermission(bluetoothPermission);
+                            logFirebaseEvent('Button_request_permissions');
+                            await requestPermission(locationPermission);
                             logFirebaseEvent('Button_custom_action');
                             _model.btEnabledUpdate =
                                 await actions.isBluetoothEnabled();
@@ -320,7 +324,8 @@ class _ConnectBTWidgetState extends State<ConnectBTWidget> {
                                                     'Container_navigate_to');
 
                                                 context.pushNamed(
-                                                  BTDeviceWidget.routeName,
+                                                  BlocklyPageTestWidget
+                                                      .routeName,
                                                   queryParameters: {
                                                     'connectedDevice':
                                                         serializeParam(

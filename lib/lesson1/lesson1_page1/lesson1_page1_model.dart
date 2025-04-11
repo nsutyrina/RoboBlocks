@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'lessons_widget.dart' show LessonsWidget;
+import 'lesson1_page1_widget.dart' show Lesson1Page1Widget;
 import 'package:flutter/material.dart';
 
-class LessonsModel extends FlutterFlowModel<LessonsWidget> {
+class Lesson1Page1Model extends FlutterFlowModel<Lesson1Page1Widget> {
   @override
   void initState(BuildContext context) {}
 
