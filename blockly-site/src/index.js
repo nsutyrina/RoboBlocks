@@ -22,38 +22,8 @@ import './index.css';
 // 🔌 GLOBAL deviceId injected by FlutterFlow
 let deviceId = '';
 
-function sendDance() {
-  if (window.flutter_inappwebview) {
-    window.flutter_inappwebview.callHandler('sendDance');
-  }
-}
-
-function sendForward() {
-  if (window.flutter_inappwebview) {
-    window.flutter_inappwebview.callHandler('sendForward');
-  }
-}
-
-function sendBackward() {
-  if (window.flutter_inappwebview) {
-    window.flutter_inappwebview.callHandler('sendBackward');
-  }
-}
-
-function sendLeft() {
-  if (window.flutter_inappwebview) {
-    window.flutter_inappwebview.callHandler('sendLeft');
-  }
-}
-
-function sendRight() {
-  if (window.flutter_inappwebview) {
-    window.flutter_inappwebview.callHandler('sendRight');
-  }
-}
-
-// For debugging if needed
-function sendData(deviceId, char) {
+// 📡 JS → Flutter bridge
+function sendCommandToFlutter(char) {
   console.log('📤 Sending to Flutter:', { deviceId, char });
 
   if (window.flutter_inappwebview) {
@@ -61,10 +31,17 @@ function sendData(deviceId, char) {
       'onReceivedJsMessage',
       JSON.stringify({ deviceId, char })
     );
+  } else {
+    console.warn('⚠️ Not running inside Flutter WebView');
   }
 
+  // For browser dev testing
   window.parent.postMessage(
-    { type: 'sendData', deviceId, char },
+    {
+      type: 'sendData',
+      deviceId,
+      char,
+    },
     '*'
   );
 
@@ -74,45 +51,30 @@ function sendData(deviceId, char) {
   }
 }
 
-// Dummy implementations for testing output (optional)
-function moonWalkLeft(steps, t) {
-  const outputDiv = document.getElementById('output');
-  const textEl = document.createElement('p');
-  textEl.innerText = `moonWalkLeft called with steps=${steps}, T=${t}`;
-  outputDiv.appendChild(textEl);
-}
-function moonWalkRight(steps, t) {
-  const outputDiv = document.getElementById('output');
-  const textEl = document.createElement('p');
-  textEl.innerText = `moonWalkRight called with steps=${steps}, T=${t}`;
-  outputDiv.appendChild(textEl);
-}
-function walk(steps, t, dir) {
-  const outputDiv = document.getElementById('output');
-  const textEl = document.createElement('p');
-  textEl.innerText = `walk called with steps=${steps}, T=${t}, dir=${dir}`;
-  outputDiv.appendChild(textEl);
-}
-function dance() {
-  const outputDiv = document.getElementById('output');
-  const textEl = document.createElement('p');
-  textEl.innerText = `dance called`;
-  outputDiv.appendChild(textEl);
-}
-function walkBackward() {
-  const outputDiv = document.getElementById('output');
-  const textEl = document.createElement('p');
-  textEl.innerText = `walkBackward called`;
-  outputDiv.appendChild(textEl);
-}
-
 // Receive deviceId from FlutterFlow
 window.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'setDeviceId') {
     deviceId = event.data.deviceId;
-    console.log('✅ Received deviceId:', deviceId);
+    console.log('✅ Received deviceId from Flutter:', deviceId);
   }
 });
+
+// Define bridge functions for Blockly to call
+function sendForward() {
+  sendCommandToFlutter('f');
+}
+function sendBackward() {
+  sendCommandToFlutter('b');
+}
+function sendLeft() {
+  sendCommandToFlutter('l');
+}
+function sendRight() {
+  sendCommandToFlutter('r');
+}
+function sendDance() {
+  sendCommandToFlutter('d');
+}
 
 // Register blocks and generators
 Blockly.common.defineBlocks(textBlocks);
@@ -120,20 +82,20 @@ Blockly.common.defineBlocks(robotBlocks);
 Object.assign(javascriptGenerator.forBlock, textGen);
 Object.assign(javascriptGenerator.forBlock, robotGen);
 
-// Inject Blockly into the page
+// Inject Blockly
 const codeDiv = document.getElementById('generatedCode').firstChild;
 const outputDiv = document.getElementById('output');
 const blocklyDiv = document.getElementById('blocklyDiv');
 const ws = Blockly.inject(blocklyDiv, {toolbox});
 
-// Run the generated code manually
+// Run generated Blockly JS code
 const runCode = () => {
   const code = javascriptGenerator.workspaceToCode(ws);
   codeDiv.innerText = code;
   outputDiv.innerHTML = '';
 
   try {
-    eval(code); // Executes functions like sendDance()
+    eval(code); // This will run sendDance(), etc.
   } catch (e) {
     outputDiv.innerHTML = `<pre style="color:red;">${e}</pre>`;
   }
@@ -143,13 +105,14 @@ const runCode = () => {
 load(ws);
 runCode();
 
-// Save state on changes (but don’t auto-run)
+// Save state on block changes (but don't auto-run)
 ws.addChangeListener((e) => {
   if (e.isUiEvent) return;
   save(ws);
 });
 
-// Manual "Run Code" button
+// Run Button
 document.getElementById('runButton').addEventListener('click', () => {
   runCode();
 });
+
