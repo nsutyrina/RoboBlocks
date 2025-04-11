@@ -7,35 +7,44 @@
 import * as Blockly from 'blockly';
 
 // Import blocks
-import {blocks as textBlocks} from './blocks/text';
-import {blocks as robotBlocks} from './blocks/robot';
+import { blocks as textBlocks } from './blocks/text';
+import { blocks as robotBlocks } from './blocks/robot';
 
 // Import generators
-import {forBlock as textGen} from './generators/javascript';
-import {forBlock as robotGen} from './generators/javascript';
+import { forBlock as textGen } from './generators/javascript';
+import { forBlock as robotGen } from './generators/javascript';
 
-import {javascriptGenerator} from 'blockly/javascript';
-import {save, load} from './serialization';
-import {toolbox} from './toolbox';
+import { javascriptGenerator } from 'blockly/javascript';
+import { save, load } from './serialization';
+import { toolbox } from './toolbox';
 import './index.css';
 
-// 🔌 GLOBAL deviceId injected by FlutterFlow
+// 🔌 Flutter WebView Communication Flag
 let deviceId = '';
+let isFlutterReady = false;
 
-// 📡 JS → Flutter bridge
-function sendCommandToFlutter(char) {
-  console.log('📤 Sending to Flutter:', { deviceId, char });
+// ✅ Flutter Platform Ready Event
+window.addEventListener('flutterInAppWebViewPlatformReady', function () {
+  isFlutterReady = true;
+  console.log('✅ Flutter WebView platform is ready');
+});
 
-  if (window.flutter_inappwebview) {
-    window.flutter_inappwebview.callHandler(
-      'onReceivedJsMessage',
-      JSON.stringify({ deviceId, char })
-    );
+// ✅ Send data to Flutter
+function sendData(deviceId, char) {
+  if (isFlutterReady && window.flutter_inappwebview) {
+    window.flutter_inappwebview
+      .callHandler('onReceivedJsMessage', JSON.stringify({ deviceId, char }))
+      .then((result) => {
+        console.log('📤 Sent to Flutter:', { deviceId, char, result });
+      })
+      .catch((e) => {
+        console.error('🚨 Error sending to Flutter:', e);
+      });
   } else {
-    console.warn('⚠️ Not running inside Flutter WebView');
+    console.warn('⏳ Flutter not ready yet');
   }
 
-  // For browser dev testing
+  // For debugging in browser
   window.parent.postMessage(
     {
       type: 'sendData',
@@ -51,67 +60,82 @@ function sendCommandToFlutter(char) {
   }
 }
 
-// Receive deviceId from FlutterFlow
+// Dummy test functions (optional)
+function moonWalkLeft(steps, t) {
+  const outputDiv = document.getElementById('output');
+  const textEl = document.createElement('p');
+  textEl.innerText = `moonWalkLeft called with steps=${steps}, T=${t}`;
+  outputDiv.appendChild(textEl);
+}
+function moonWalkRight(steps, t) {
+  const outputDiv = document.getElementById('output');
+  const textEl = document.createElement('p');
+  textEl.innerText = `moonWalkRight called with steps=${steps}, T=${t}`;
+  outputDiv.appendChild(textEl);
+}
+function walk(steps, t, dir) {
+  const outputDiv = document.getElementById('output');
+  const textEl = document.createElement('p');
+  textEl.innerText = `walk called with steps=${steps}, T=${t}, dir=${dir}`;
+  outputDiv.appendChild(textEl);
+}
+function dance() {
+  const outputDiv = document.getElementById('output');
+  const textEl = document.createElement('p');
+  textEl.innerText = `dance called`;
+  outputDiv.appendChild(textEl);
+}
+function walkBackward() {
+  const outputDiv = document.getElementById('output');
+  const textEl = document.createElement('p');
+  textEl.innerText = `walkBackward called`;
+  outputDiv.appendChild(textEl);
+}
+
+// 🔄 Receive deviceId from FlutterFlow
 window.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'setDeviceId') {
     deviceId = event.data.deviceId;
-    console.log('✅ Received deviceId from Flutter:', deviceId);
+    console.log('✅ Received deviceId:', deviceId);
   }
 });
 
-// Define bridge functions for Blockly to call
-function sendForward() {
-  sendCommandToFlutter('f');
-}
-function sendBackward() {
-  sendCommandToFlutter('b');
-}
-function sendLeft() {
-  sendCommandToFlutter('l');
-}
-function sendRight() {
-  sendCommandToFlutter('r');
-}
-function sendDance() {
-  sendCommandToFlutter('d');
-}
-
-// Register blocks and generators
+// ✅ Register blocks and generators
 Blockly.common.defineBlocks(textBlocks);
 Blockly.common.defineBlocks(robotBlocks);
 Object.assign(javascriptGenerator.forBlock, textGen);
 Object.assign(javascriptGenerator.forBlock, robotGen);
 
-// Inject Blockly
+// 🔧 Inject Blockly into the page
 const codeDiv = document.getElementById('generatedCode').firstChild;
 const outputDiv = document.getElementById('output');
 const blocklyDiv = document.getElementById('blocklyDiv');
-const ws = Blockly.inject(blocklyDiv, {toolbox});
+const ws = Blockly.inject(blocklyDiv, { toolbox });
 
-// Run generated Blockly JS code
+// ▶️ Run the generated code
 const runCode = () => {
   const code = javascriptGenerator.workspaceToCode(ws);
   codeDiv.innerText = code;
   outputDiv.innerHTML = '';
 
   try {
-    eval(code); // This will run sendDance(), etc.
+    eval(code); // Executes code like sendDance()
   } catch (e) {
     outputDiv.innerHTML = `<pre style="color:red;">${e}</pre>`;
   }
 };
 
-// Initial load
+// ⏳ Initial load
 load(ws);
 runCode();
 
-// Save state on block changes (but don't auto-run)
+// 💾 Save state on changes (but don’t auto-run)
 ws.addChangeListener((e) => {
   if (e.isUiEvent) return;
   save(ws);
 });
 
-// Run Button
+// 🟢 Manual Run Button
 document.getElementById('runButton').addEventListener('click', () => {
   runCode();
 });
