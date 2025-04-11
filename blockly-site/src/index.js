@@ -21,6 +21,13 @@ import './index.css';
 
 // 🔌 GLOBAL deviceId injected by FlutterFlow
 let deviceId = '';
+let isFlutterReady = false;
+
+// ✅ Flutter platform ready → allow messages
+window.addEventListener("flutterInAppWebViewPlatformReady", function () {
+  isFlutterReady = true;
+  logDebug("✅ Flutter platform is ready");
+});
 
 // 👉 Define global functions that Blockly can call
 window.sendForward = () => {
@@ -45,62 +52,78 @@ window.sendDance = () => {
 
 // 🔁 Helper to send data to Flutter
 function sendFlutterCommand(char) {
+  if (!isFlutterReady) {
+    logDebug("⚠️ Flutter is not ready. Cannot send: " + char);
+    return;
+  }
+
   if (window.flutter_inappwebview) {
     window.flutter_inappwebview.callHandler(
       'onReceivedJsMessage',
       JSON.stringify({ deviceId, char })
     );
-    console.log(`📤 Sent '${char}' to Flutter (deviceId: ${deviceId})`);
+    logDebug(`📤 Sent '${char}' to Flutter (deviceId: ${deviceId})`);
   } else {
-    console.warn('⚠️ Not running inside Flutter WebView');
+    logDebug('⚠️ Not running inside Flutter WebView');
   }
 }
 
-// Receive deviceId from FlutterFlow
+// ✅ Show messages visually too
+function logDebug(msg) {
+  console.log(msg);
+  const debugDiv = document.getElementById('flutterDebugLog');
+  if (debugDiv) {
+    const line = document.createElement('p');
+    line.innerText = msg;
+    debugDiv.appendChild(line);
+  }
+}
+
+// 📩 Receive deviceId from FlutterFlow
 window.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'setDeviceId') {
     deviceId = event.data.deviceId;
-    console.log('✅ Received deviceId:', deviceId);
+    logDebug(`✅ Received deviceId from Flutter: ${deviceId}`);
   }
 });
 
-// Register custom blocks and generators
+// 🧱 Register custom blocks and generators
 Blockly.common.defineBlocks(textBlocks);
 Blockly.common.defineBlocks(robotBlocks);
 Object.assign(javascriptGenerator.forBlock, textGen);
 Object.assign(javascriptGenerator.forBlock, robotGen);
 
-// Setup Blockly UI
+// 🧠 Blockly UI & Behavior
 const codeDiv = document.getElementById('generatedCode').firstChild;
 const outputDiv = document.getElementById('output');
 const blocklyDiv = document.getElementById('blocklyDiv');
 const ws = Blockly.inject(blocklyDiv, {toolbox});
 
-// Run Blockly code manually
+// ▶️ Run generated Blockly code
 const runCode = () => {
   const code = javascriptGenerator.workspaceToCode(ws);
   codeDiv.innerText = code;
   outputDiv.innerHTML = '';
 
   try {
-    eval(code); // ← This calls sendForward(), etc.
+    eval(code); // ← Runs window.sendDance(), etc.
   } catch (e) {
     outputDiv.innerHTML = `<pre style="color:red;">${e}</pre>`;
+    logDebug("❌ Error in eval: " + e.message);
   }
 };
 
-// Load saved workspace and auto-run once
+// Load saved blocks on start
 load(ws);
 runCode();
 
-// Save state on change (but don’t auto-run)
+// Auto-save when workspace changes
 ws.addChangeListener((e) => {
   if (e.isUiEvent) return;
   save(ws);
 });
 
-// Run code when button clicked
+// "Run" button click
 document.getElementById('runButton').addEventListener('click', () => {
   runCode();
 });
-
