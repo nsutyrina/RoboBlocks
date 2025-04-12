@@ -27,7 +27,7 @@
         border: 1px solid #ccc;
       }
 
-      #outputPane {
+      #codePanel {
         width: 35%;
         height: 500px;
         background-color: #f0f0f0;
@@ -46,4 +46,12 @@
         overflow-y: auto;
         width: 90%;
         box-sizing: border-box;
-      }</style><script defer="defer" src="bundle.js"></script></head><body><h1>🚀 RoboBlocks Playground</h1><div id="pageContainer"><div id="outputPane"><h3>Generated Code</h3><pre id="generatedCode"><code></code></pre><div id="output"></div></div><div id="blocklyDiv"></div></div><div style="margin: 20px;"><button id="runButton" style="padding: 10px 20px; font-size: 16px;">▶️ Run Code</button></div><div id="flutterDebugLog"><strong>📋 Flutter Debug Log:</strong><br/></div><script type="module" src="index.js"></script></body></html>
+      }</style><script defer="defer" src="bundle.js"></script></head><body><h1>🚀 RoboBlocks Playground</h1><div id="pageContainer"><div id="codePanel"><h3>Generated Code</h3><pre id="generatedCode"><code></code></pre><div id="output"></div></div><div id="blocklyDiv"></div></div><div style="margin: 20px;"><button id="toggleCodeBtn" style="padding: 10px 20px; font-size: 14px;">👁️ Hide Code</button> <button id="runButton" style="padding: 10px 20px; font-size: 16px;">▶️ Run Code</button></div><div id="flutterDebugLog"><strong>📋 Flutter Debug Log:</strong><br/></div><script type="module" src="index.js"></script><script>const toggleBtn = document.getElementById('toggleCodeBtn');
+      const codePanel = document.getElementById('codePanel');
+      let isCodeVisible = true;
+
+      toggleBtn.addEventListener('click', () => {
+        isCodeVisible = !isCodeVisible;
+        codePanel.style.display = isCodeVisible ? 'block' : 'none';
+        toggleBtn.innerText = isCodeVisible ? '👁️ Hide Code' : '👁️ Show Code';
+      });</script></body></html>
