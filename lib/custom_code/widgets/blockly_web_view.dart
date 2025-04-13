@@ -32,6 +32,9 @@ class BlocklyWebView extends StatefulWidget {
 class _BlocklyWebViewState extends State<BlocklyWebView> {
   late InAppWebViewController _webViewController;
 
+  // 👇 Hardcoded for testing
+  final String hardcodedDeviceId = '48:87:2D:F1:08:B6';
+
   Future<void> handleBlocklyCommand(String commandChar, String deviceId) async {
     try {
       debugPrint('📦 Command from Blockly: $commandChar');
@@ -71,17 +74,15 @@ class _BlocklyWebViewState extends State<BlocklyWebView> {
         onWebViewCreated: (controller) {
           _webViewController = controller;
 
-          // Send deviceId into the Blockly WebView
-          if (widget.deviceId != null && widget.deviceId!.isNotEmpty) {
-            controller.evaluateJavascript(source: """
-              window.postMessage({
-                type: 'setDeviceId',
-                deviceId: '${widget.deviceId}'
-              }, '*');
-            """);
-          }
+          // ✅ Hardcode device ID into the WebView
+          controller.evaluateJavascript(source: """
+            window.postMessage({
+              type: 'setDeviceId',
+              deviceId: '${hardcodedDeviceId}'
+            }, '*');
+          """);
 
-          // Handle Blockly message → Call pre-built actions
+          // ✅ Handle JS → Flutter command messages
           controller.addJavaScriptHandler(
             handlerName: 'onReceivedJsMessage',
             callback: (args) async {

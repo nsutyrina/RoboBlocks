@@ -19,6 +19,7 @@ Future<bool> connectDevice(BTDevicesStruct deviceInfo) async {
   } catch (e) {
     // print(e);
     // return '$e';
+    return false;
   }
   return true;
   // var hasWriteCharacteristic = "false";

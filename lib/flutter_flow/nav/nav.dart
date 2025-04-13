@@ -105,6 +105,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
                     'lesson1Complete',
                     ParamType.bool,
                   ),
+                  lesson2Complete: params.getParam(
+                    'lesson2Complete',
+                    ParamType.bool,
+                  ),
                 ),
         ),
         FFRoute(
@@ -128,11 +132,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'Lessons')
               : LessonsWidget(),
-        ),
-        FFRoute(
-          name: MoveForwardLesson1Widget.routeName,
-          path: MoveForwardLesson1Widget.routePath,
-          builder: (context, params) => MoveForwardLesson1Widget(),
         ),
         FFRoute(
           name: LessonTemplateWidget.routeName,
@@ -219,6 +218,40 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: Lesson2CopyCopyCopyWidget.routeName,
           path: Lesson2CopyCopyCopyWidget.routePath,
           builder: (context, params) => Lesson2CopyCopyCopyWidget(),
+        ),
+        FFRoute(
+          name: AccountInfoWidget.routeName,
+          path: AccountInfoWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'AccountInfo')
+              : NavBarPage(
+                  initialPage: 'AccountInfo',
+                  page: AccountInfoWidget(),
+                ),
+        ),
+        FFRoute(
+          name: UpdateAccountInfoWidget.routeName,
+          path: UpdateAccountInfoWidget.routePath,
+          builder: (context, params) => UpdateAccountInfoWidget(
+            accountInfo: params.getParam(
+              'accountInfo',
+              ParamType.String,
+            ),
+            parameterToUpdate: params.getParam(
+              'parameterToUpdate',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: LoginPageCopy2Widget.routeName,
+          path: LoginPageCopy2Widget.routePath,
+          builder: (context, params) => LoginPageCopy2Widget(),
+        ),
+        FFRoute(
+          name: LoginPageCopy2CopyWidget.routeName,
+          path: LoginPageCopy2CopyWidget.routePath,
+          builder: (context, params) => LoginPageCopy2CopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -334,6 +334,14 @@ class _ConnectBTWidgetState extends State<ConnectBTWidget> {
                                                     ),
                                                   }.withoutNulls,
                                                 );
+
+                                                logFirebaseEvent(
+                                                    'Container_update_app_state');
+                                                FFAppState().isDeviceConnected =
+                                                    true;
+                                                FFAppState().connectedDevice =
+                                                    devicesListViewItem;
+                                                safeSetState(() {});
                                               } else {
                                                 logFirebaseEvent(
                                                     'Container_show_snack_bar');

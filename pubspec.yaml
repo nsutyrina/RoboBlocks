@@ -37,6 +37,7 @@ dependencies:
   collection: 1.19.0
   device_info_plus: 10.1.2
   device_info_plus_platform_interface: 7.0.1
+  easy_debounce: 2.0.1
   file_picker: 8.1.2
   firebase_analytics: 11.3.5
   firebase_analytics_platform_interface: 4.2.7

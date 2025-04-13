@@ -66,7 +66,7 @@ class _Lesson2CopyWidgetState extends State<Lesson2CopyWidget> {
                           logFirebaseEvent('LESSON_2_COPY_PAGE__BTN_ON_TAP');
                           logFirebaseEvent('Button_navigate_to');
 
-                          context.pushNamed(HomePageWidget.routeName);
+                          context.pushNamed(Lesson2Widget.routeName);
                         },
                         text: '',
                         icon: Icon(
@@ -151,7 +151,7 @@ class _Lesson2CopyWidgetState extends State<Lesson2CopyWidget> {
                               'LESSON_2_COPY_PAGE_NEXT_BTN_ON_TAP');
                           logFirebaseEvent('Button_navigate_to');
 
-                          context.pushNamed(Lesson1Page2Widget.routeName);
+                          context.pushNamed(Lesson2CopyCopyWidget.routeName);
                         },
                         text: 'Next',
                         options: FFButtonOptions(

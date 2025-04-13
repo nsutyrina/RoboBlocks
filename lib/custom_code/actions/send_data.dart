@@ -14,7 +14,7 @@ Future<String> sendData(String deviceId, String commandChar) async {
   try {
     final device = BluetoothDevice.fromId(deviceId);
 
-    // 🧠 Important line that matches the working actions
+    // Important line that matches the working actions
     final services = await device.discoverServices();
 
     final characteristic = BluetoothCharacteristic(

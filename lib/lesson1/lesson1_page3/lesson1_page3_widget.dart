@@ -406,6 +406,14 @@ class _Lesson1Page3WidgetState extends State<Lesson1Page3Widget> {
                                                       ),
                                                     }.withoutNulls,
                                                   );
+
+                                                  logFirebaseEvent(
+                                                      'Container_update_app_state');
+                                                  FFAppState()
+                                                      .isDeviceConnected = true;
+                                                  FFAppState().connectedDevice =
+                                                      devicesListViewItem;
+                                                  safeSetState(() {});
                                                 } else {
                                                   logFirebaseEvent(
                                                       'Container_show_snack_bar');

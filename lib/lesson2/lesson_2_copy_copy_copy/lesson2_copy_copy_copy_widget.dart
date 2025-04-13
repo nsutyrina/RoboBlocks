@@ -68,7 +68,7 @@ class _Lesson2CopyCopyCopyWidgetState extends State<Lesson2CopyCopyCopyWidget> {
                               'LESSON_2_COPY_COPY_COPY_PAGE__BTN_ON_TAP');
                           logFirebaseEvent('Button_navigate_to');
 
-                          context.pushNamed(HomePageWidget.routeName);
+                          context.pushNamed(Lesson2CopyCopyWidget.routeName);
                         },
                         text: '',
                         icon: Icon(
@@ -153,7 +153,15 @@ class _Lesson2CopyCopyCopyWidgetState extends State<Lesson2CopyCopyCopyWidget> {
                               'LESSON_2_COPY_COPY_COPY_NEXT_BTN_ON_TAP');
                           logFirebaseEvent('Button_navigate_to');
 
-                          context.pushNamed(Lesson1Page2Widget.routeName);
+                          context.pushNamed(
+                            HomePageWidget.routeName,
+                            queryParameters: {
+                              'lesson2Complete': serializeParam(
+                                true,
+                                ParamType.bool,
+                              ),
+                            }.withoutNulls,
+                          );
                         },
                         text: 'Next',
                         options: FFButtonOptions(
