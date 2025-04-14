@@ -174,6 +174,9 @@ class _Lesson1Page4WidgetState extends State<Lesson1Page4Widget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).primaryText,
+                      ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
@@ -197,10 +200,14 @@ class _Lesson1Page4WidgetState extends State<Lesson1Page4Widget> {
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'KoHo',
-                                color: Colors.white,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).primaryText,
+                      ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
@@ -227,6 +234,9 @@ class _Lesson1Page4WidgetState extends State<Lesson1Page4Widget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).primaryText,
+                      ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
@@ -253,6 +263,9 @@ class _Lesson1Page4WidgetState extends State<Lesson1Page4Widget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).primaryText,
+                      ),
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
@@ -287,6 +300,9 @@ class _Lesson1Page4WidgetState extends State<Lesson1Page4Widget> {
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 0.0,
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primaryText,
+                        ),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),

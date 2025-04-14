@@ -7,4 +7,3 @@ export 'send_forward.dart' show sendForward;
 export 'send_backward.dart' show sendBackward;
 export 'send_left.dart' show sendLeft;
 export 'send_right.dart' show sendRight;
-export 'send_data.dart' show sendData;

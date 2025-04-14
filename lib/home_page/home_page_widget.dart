@@ -187,7 +187,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         '10 Day Streak',
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
+                              fontFamily: 'KoHo',
                               fontSize: 10.0,
                               letterSpacing: 0.0,
                             ),
@@ -200,7 +200,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         'Daily Task',
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
+                              fontFamily: 'KoHo',
                               fontSize: 16.0,
                               letterSpacing: 0.0,
                             ),
