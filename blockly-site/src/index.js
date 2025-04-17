@@ -5,41 +5,46 @@
  */
 
 import * as Blockly from 'blockly';
-
-// Import blocks
 import {blocks as textBlocks} from './blocks/text';
 import {blocks as robotBlocks} from './blocks/robot';
-
-// Import generators
 import {forBlock as textGen} from './generators/javascript';
 import {forBlock as robotGen} from './generators/javascript';
-
 import {javascriptGenerator} from 'blockly/javascript';
 import {save, load} from './serialization';
 import {toolbox} from './toolbox';
 import './index.css';
 
-// 🔌 Force fallback deviceId for now
-let deviceId = '48:87:2D:F1:08:B6'; // ⬅️ Hardcoded to always work for now
+// 🔌 Globals from Flutter
+let deviceId = '';
 let isFlutterReady = false;
-let isDeviceIdReady = true; // Assume true since we hardcoded
+let isDeviceIdReady = false;
 const commandQueue = [];
 
-// ✅ WebView Ready → flush any queued commands
+// ✅ Listen for WebView Ready
 window.addEventListener('flutterInAppWebViewPlatformReady', () => {
   isFlutterReady = true;
-  logDebug('✅ Flutter platform is ready');
+  logDebug('✅ Flutter WebView is ready');
   flushCommandQueue();
 });
 
-// ✅ Blockly block functions
+// ✅ Listen for injected deviceId
+window.addEventListener('message', (event) => {
+  if (event.data?.type === 'setDeviceId') {
+    deviceId = event.data.deviceId;
+    isDeviceIdReady = true;
+    logDebug(`✅ Received deviceId from Flutter: ${deviceId}`);
+    flushCommandQueue();
+  }
+});
+
+// 🧠 Blockly → Flutter commands
 window.sendForward = () => sendFlutterCommand('f');
 window.sendBackward = () => sendFlutterCommand('b');
 window.sendLeft = () => sendFlutterCommand('l');
 window.sendRight = () => sendFlutterCommand('r');
 window.sendDance = () => sendFlutterCommand('d');
 
-// 🔁 Send command to Flutter
+// 📤 Send to Flutter
 function sendFlutterCommand(char) {
   if (!isFlutterReady || !isDeviceIdReady) {
     logDebug(`⏳ Queued '${char}' (waiting for Flutter/deviceId)`);
@@ -58,7 +63,7 @@ function sendFlutterCommand(char) {
   }
 }
 
-// 🚀 Flush queue when platform & ID are ready
+// 🧹 Send any queued commands
 function flushCommandQueue() {
   if (!isFlutterReady || !isDeviceIdReady) return;
   logDebug(`🚀 Flushing ${commandQueue.length} queued command(s)...`);
@@ -68,7 +73,7 @@ function flushCommandQueue() {
   }
 }
 
-// 🧾 Log debug to both console + panel
+// 📝 Debug logger
 function logDebug(msg) {
   console.log(msg);
   const logEl = document.getElementById('flutterDebugLog');
@@ -79,19 +84,17 @@ function logDebug(msg) {
   }
 }
 
-// 🧱 Register custom blocks + generators
+// 🔧 Blockly setup
 Blockly.common.defineBlocks(textBlocks);
 Blockly.common.defineBlocks(robotBlocks);
 Object.assign(javascriptGenerator.forBlock, textGen);
 Object.assign(javascriptGenerator.forBlock, robotGen);
 
-// 🔧 Setup Blockly workspace
 const codeDiv = document.getElementById('generatedCode')?.firstChild;
 const outputDiv = document.getElementById('output');
 const blocklyDiv = document.getElementById('blocklyDiv');
 const ws = Blockly.inject(blocklyDiv, { toolbox });
 
-// ▶️ Run generated JS
 const runCode = () => {
   const code = javascriptGenerator.workspaceToCode(ws);
   if (codeDiv) codeDiv.innerText = code;
@@ -100,23 +103,18 @@ const runCode = () => {
   try {
     eval(code);
   } catch (e) {
-    if (outputDiv) {
-      outputDiv.innerHTML = `<pre style="color:red;">${e}</pre>`;
-    }
+    outputDiv.innerHTML = `<pre style="color:red;">${e}</pre>`;
     logDebug(`❌ JS Eval Error: ${e.message}`);
   }
 };
 
-// ⏫ Load saved workspace
 load(ws);
 runCode();
 
-// 💾 Save on block change
 ws.addChangeListener((e) => {
   if (e.isUiEvent) return;
   save(ws);
 });
 
-// ▶️ Run button click
 document.getElementById('runButton')?.addEventListener('click', runCode);
 
