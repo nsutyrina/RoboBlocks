@@ -43,6 +43,7 @@ window.sendBackward = () => sendFlutterCommand('b');
 window.sendLeft = () => sendFlutterCommand('l');
 window.sendRight = () => sendFlutterCommand('r');
 window.sendDance = () => sendFlutterCommand('d');
+window.sendSing = () => sendFlutterCommand('s');
 
 // 📤 Send to Flutter
 function sendFlutterCommand(char) {
