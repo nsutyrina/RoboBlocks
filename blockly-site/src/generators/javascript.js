@@ -42,6 +42,10 @@ forBlock['dance'] = function (block, generator) {
   return "sendDance();\n";
 };
 
+forBlock['sing'] = function (block, generator) {
+  return "sendMusic();\n";
+};
+
 forBlock['walk_backward'] = function (block, generator) {
   return "sendBackward();\n";
 };
