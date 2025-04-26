@@ -69,6 +69,16 @@ Blockly.defineBlocksWithJsonArray([
     tooltip: 'Make the robot walk backward',
     helpUrl: '',
   },
+  {
+    type: 'sing',  // 🎵 🎤
+    message0: 'Sing a Song 🎶',
+    args0: [],
+    previousStatement: null,
+    nextStatement: null,
+    colour: 290, // Light blue / purple
+    tooltip: 'Make the robot play a song',
+    helpUrl: '',
+  },
 ]);
 
 export const blocks = [];
