@@ -124,6 +124,7 @@ export const toolbox = {
         { kind: 'block', type: 'walk' }, 
         { kind: 'block', type: 'dance' },
         { kind: 'block', type: 'walk_backward' },
+        { kind: 'block', type: 'sing' }, 
       ],
     },
     {
