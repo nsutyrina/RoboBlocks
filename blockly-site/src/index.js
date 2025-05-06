@@ -15,17 +15,10 @@ import {toolbox} from './toolbox';
 import './index.css';
 
 // 🔌 Globals from Flutter
-let deviceId = '';
+let deviceId = '48:87:2D:F1:08:B6'; // ← Replace with your robot's ID if needed
 let isFlutterReady = false;
-let isDeviceIdReady = false;
+let isDeviceIdReady = true; // <-- we force it to be ready
 const commandQueue = [];
-
-// ✅ Listen for WebView Ready
-window.addEventListener('flutterInAppWebViewPlatformReady', () => {
-  isFlutterReady = true;
-  logDebug('✅ Flutter WebView is ready');
-  flushCommandQueue();
-});
 
 // ✅ Listen for injected deviceId
 window.addEventListener('message', (event) => {
