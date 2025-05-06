@@ -20,14 +20,11 @@ let isFlutterReady = false;
 let isDeviceIdReady = true; // <-- we force it to be ready
 const commandQueue = [];
 
-// ✅ Listen for injected deviceId
-window.addEventListener('message', (event) => {
-  if (event.data?.type === 'setDeviceId') {
-    deviceId = event.data.deviceId;
-    isDeviceIdReady = true;
-    logDebug(`✅ Received deviceId from Flutter: ${deviceId}`);
-    flushCommandQueue();
-  }
+// ✅ Listen for WebView Ready
+window.addEventListener('flutterInAppWebViewPlatformReady', () => {
+  isFlutterReady = true;
+  logDebug('✅ Flutter WebView is ready');
+  flushCommandQueue();
 });
 
 // 🧠 Blockly → Flutter commands
@@ -41,7 +38,7 @@ window.sendSing = () => sendFlutterCommand('s');
 // 📤 Send to Flutter
 function sendFlutterCommand(char) {
   if (!isFlutterReady || !isDeviceIdReady) {
-    logDebug(`⏳ Queued '${char}' (waiting for Flutter/deviceId)`);
+    logDebug(⏳ Queued '${char}' (waiting for Flutter/deviceId));
     commandQueue.push(char);
     return;
   }
@@ -51,7 +48,7 @@ function sendFlutterCommand(char) {
       'onReceivedJsMessage',
       JSON.stringify({ deviceId, char })
     );
-    logDebug(`📤 Sent '${char}' to Flutter (deviceId: ${deviceId})`);
+    logDebug(📤 Sent '${char}' to Flutter (deviceId: ${deviceId}));
   } else {
     logDebug('⚠️ Not running inside Flutter WebView');
   }
@@ -60,7 +57,7 @@ function sendFlutterCommand(char) {
 // 🧹 Send any queued commands
 function flushCommandQueue() {
   if (!isFlutterReady || !isDeviceIdReady) return;
-  logDebug(`🚀 Flushing ${commandQueue.length} queued command(s)...`);
+  logDebug(🚀 Flushing ${commandQueue.length} queued command(s)...);
   while (commandQueue.length > 0) {
     const char = commandQueue.shift();
     sendFlutterCommand(char);
@@ -97,8 +94,8 @@ const runCode = () => {
   try {
     eval(code);
   } catch (e) {
-    outputDiv.innerHTML = `<pre style="color:red;">${e}</pre>`;
-    logDebug(`❌ JS Eval Error: ${e.message}`);
+    outputDiv.innerHTML = <pre style="color:red;">${e}</pre>;
+    logDebug(❌ JS Eval Error: ${e.message});
   }
 };
 
