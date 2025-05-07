@@ -23,7 +23,7 @@ const commandQueue = [];
 // ✅ Listen for WebView Ready
 window.addEventListener('flutterInAppWebViewPlatformReady', () => {
   isFlutterReady = true;
-  logDebug('✅ Flutter WebView is ready');
+  logDebug('Flutter WebView is ready');
   flushCommandQueue();
 });
 
@@ -38,7 +38,7 @@ window.sendSing = () => sendFlutterCommand('s');
 // 📤 Send to Flutter
 function sendFlutterCommand(char) {
   if (!isFlutterReady || !isDeviceIdReady) {
-    logDebug('⏳ Queued '${char}' (waiting for Flutter/deviceId)');
+    logDebug('Queued (waiting for Flutter/deviceId)');
     commandQueue.push(char);
     return;
   }
@@ -48,9 +48,9 @@ function sendFlutterCommand(char) {
       'onReceivedJsMessage',
       JSON.stringify({ deviceId, char })
     );
-    logDebug('📤 Sent '${char}' to Flutter (deviceId: ${deviceId})');
+    logDebug('Sent to Flutter (deviceId: ${deviceId})');
   } else {
-    logDebug('⚠️ Not running inside Flutter WebView');
+    logDebug('Not running inside Flutter WebView');
   }
 }
 
@@ -98,7 +98,7 @@ const runCode = () => {
     eval(code);
   } catch (e) {
     outputDiv.innerHTML = <pre style="color:red;">${e}</pre>;
-    logDebug('❌ JS Eval Error: ${e.message}');
+    logDebug('JS Eval Error: ${e.message}');
   }
 };
 
