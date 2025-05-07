@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -63,13 +64,14 @@ class FFAppState extends ChangeNotifier {
     _isDeviceConnected = value;
   }
 
-  BTDevicesStruct _connectedDevice = BTDevicesStruct();
-  BTDevicesStruct get connectedDevice => _connectedDevice;
-  set connectedDevice(BTDevicesStruct value) {
-    _connectedDevice = value;
+  BTDevicesStruct _theConnectedDevice =
+      BTDevicesStruct.fromSerializableMap(jsonDecode('{}'));
+  BTDevicesStruct get theConnectedDevice => _theConnectedDevice;
+  set theConnectedDevice(BTDevicesStruct value) {
+    _theConnectedDevice = value;
   }
 
-  void updateConnectedDeviceStruct(Function(BTDevicesStruct) updateFn) {
-    updateFn(_connectedDevice);
+  void updateTheConnectedDeviceStruct(Function(BTDevicesStruct) updateFn) {
+    updateFn(_theConnectedDevice);
   }
 }

@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom widgets
 import '/custom_code/actions/index.dart'; // Imports custom actions
+import '/flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
@@ -53,6 +54,9 @@ class _BlocklyWebViewState extends State<BlocklyWebView> {
           break;
         case 'd':
           await custom_actions.sendDance(BTDevicesStruct(id: deviceId));
+          break;
+        case 's':
+          await custom_actions.sendMusic(BTDevicesStruct(id: deviceId));
           break;
         default:
           debugPrint('⚠️ Unknown commandChar: $commandChar');

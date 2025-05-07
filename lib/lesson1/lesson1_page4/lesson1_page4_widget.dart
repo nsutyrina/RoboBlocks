@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'lesson1_page4_model.dart';
 export 'lesson1_page4_model.dart';
 
@@ -90,10 +91,23 @@ class _Lesson1Page4WidgetState extends State<Lesson1Page4Widget> {
                         color: FlutterFlowTheme.of(context).alternate,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Inter Tight',
+                                  font: GoogleFonts.interTight(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
                                   color: Colors.white,
                                   fontSize: 40.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
                                 ),
                         elevation: 0.0,
                         borderSide: BorderSide(
@@ -125,16 +139,40 @@ class _Lesson1Page4WidgetState extends State<Lesson1Page4Widget> {
                 child: Text(
                   'Wonderful job!',
                   style: FlutterFlowTheme.of(context).headlineLarge.override(
-                        fontFamily: 'KoHo',
+                        font: GoogleFonts.koHo(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .headlineLarge
+                              .fontWeight,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .headlineLarge
+                              .fontStyle,
+                        ),
                         letterSpacing: 0.0,
+                        fontWeight: FlutterFlowTheme.of(context)
+                            .headlineLarge
+                            .fontWeight,
+                        fontStyle: FlutterFlowTheme.of(context)
+                            .headlineLarge
+                            .fontStyle,
                       ),
                 ),
               ),
               Text(
                 'Try some of the buttons below to',
                 style: FlutterFlowTheme.of(context).headlineLarge.override(
-                      fontFamily: 'KoHo',
+                      font: GoogleFonts.koHo(
+                        fontWeight: FlutterFlowTheme.of(context)
+                            .headlineLarge
+                            .fontWeight,
+                        fontStyle: FlutterFlowTheme.of(context)
+                            .headlineLarge
+                            .fontStyle,
+                      ),
                       letterSpacing: 0.0,
+                      fontWeight:
+                          FlutterFlowTheme.of(context).headlineLarge.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).headlineLarge.fontStyle,
                     ),
               ),
               Padding(
@@ -142,8 +180,21 @@ class _Lesson1Page4WidgetState extends State<Lesson1Page4Widget> {
                 child: Text(
                   'see your robot move!',
                   style: FlutterFlowTheme.of(context).headlineLarge.override(
-                        fontFamily: 'KoHo',
+                        font: GoogleFonts.koHo(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .headlineLarge
+                              .fontWeight,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .headlineLarge
+                              .fontStyle,
+                        ),
                         letterSpacing: 0.0,
+                        fontWeight: FlutterFlowTheme.of(context)
+                            .headlineLarge
+                            .fontWeight,
+                        fontStyle: FlutterFlowTheme.of(context)
+                            .headlineLarge
+                            .fontStyle,
                       ),
                 ),
               ),
@@ -169,9 +220,22 @@ class _Lesson1Page4WidgetState extends State<Lesson1Page4Widget> {
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'KoHo',
+                                font: GoogleFonts.koHo(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
+                                ),
                                 color: Colors.white,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontStyle,
                               ),
                       elevation: 0.0,
                       borderSide: BorderSide(
@@ -199,10 +263,23 @@ class _Lesson1Page4WidgetState extends State<Lesson1Page4Widget> {
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'KoHo',
+                                font: GoogleFonts.koHo(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
+                                ),
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontStyle,
                               ),
                       elevation: 0.0,
                       borderSide: BorderSide(
@@ -229,9 +306,22 @@ class _Lesson1Page4WidgetState extends State<Lesson1Page4Widget> {
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'KoHo',
+                                font: GoogleFonts.koHo(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
+                                ),
                                 color: Colors.white,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontStyle,
                               ),
                       elevation: 0.0,
                       borderSide: BorderSide(
@@ -258,9 +348,22 @@ class _Lesson1Page4WidgetState extends State<Lesson1Page4Widget> {
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'KoHo',
+                                font: GoogleFonts.koHo(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
+                                ),
                                 color: Colors.white,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontStyle,
                               ),
                       elevation: 0.0,
                       borderSide: BorderSide(
@@ -295,9 +398,22 @@ class _Lesson1Page4WidgetState extends State<Lesson1Page4Widget> {
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'KoHo',
+                                  font: GoogleFonts.koHo(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
                                   color: Colors.white,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
                                 ),
                         elevation: 0.0,
                         borderSide: BorderSide(
@@ -343,9 +459,22 @@ class _Lesson1Page4WidgetState extends State<Lesson1Page4Widget> {
                         color: FlutterFlowTheme.of(context).tertiary,
                         textStyle:
                             FlutterFlowTheme.of(context).displayMedium.override(
-                                  fontFamily: 'KoHo',
+                                  font: GoogleFonts.koHo(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displayMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displayMedium
+                                        .fontStyle,
+                                  ),
                                   fontSize: 25.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displayMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displayMedium
+                                      .fontStyle,
                                 ),
                         elevation: 0.0,
                         borderSide: BorderSide(

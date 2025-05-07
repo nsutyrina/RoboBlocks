@@ -5,6 +5,7 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/permissions_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'lesson1_page2_model.dart';
 export 'lesson1_page2_model.dart';
 
@@ -86,10 +87,23 @@ class _Lesson1Page2WidgetState extends State<Lesson1Page2Widget> {
                         color: FlutterFlowTheme.of(context).alternate,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Inter Tight',
+                                  font: GoogleFonts.interTight(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
                                   color: Colors.white,
                                   fontSize: 40.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
                                 ),
                         elevation: 0.0,
                         borderSide: BorderSide(
@@ -122,8 +136,21 @@ class _Lesson1Page2WidgetState extends State<Lesson1Page2Widget> {
                   'Let\'s make sure we can access your device\'s bluetooth',
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).headlineLarge.override(
-                        fontFamily: 'KoHo',
+                        font: GoogleFonts.koHo(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .headlineLarge
+                              .fontWeight,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .headlineLarge
+                              .fontStyle,
+                        ),
                         letterSpacing: 0.0,
+                        fontWeight: FlutterFlowTheme.of(context)
+                            .headlineLarge
+                            .fontWeight,
+                        fontStyle: FlutterFlowTheme.of(context)
+                            .headlineLarge
+                            .fontStyle,
                       ),
                 ),
               ),
@@ -133,8 +160,21 @@ class _Lesson1Page2WidgetState extends State<Lesson1Page2Widget> {
                   'Click the button, then click \'Allow\' on the popups',
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).headlineLarge.override(
-                        fontFamily: 'KoHo',
+                        font: GoogleFonts.koHo(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .headlineLarge
+                              .fontWeight,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .headlineLarge
+                              .fontStyle,
+                        ),
                         letterSpacing: 0.0,
+                        fontWeight: FlutterFlowTheme.of(context)
+                            .headlineLarge
+                            .fontWeight,
+                        fontStyle: FlutterFlowTheme.of(context)
+                            .headlineLarge
+                            .fontStyle,
                       ),
                 ),
               ),
@@ -191,9 +231,22 @@ class _Lesson1Page2WidgetState extends State<Lesson1Page2Widget> {
                         color: FlutterFlowTheme.of(context).secondary,
                         textStyle:
                             FlutterFlowTheme.of(context).displayMedium.override(
-                                  fontFamily: 'KoHo',
+                                  font: GoogleFonts.koHo(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displayMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displayMedium
+                                        .fontStyle,
+                                  ),
                                   fontSize: 25.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displayMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displayMedium
+                                      .fontStyle,
                                 ),
                         elevation: 0.0,
                         borderSide: BorderSide(

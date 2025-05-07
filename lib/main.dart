@@ -10,6 +10,7 @@ import 'auth/firebase_auth/auth_util.dart';
 import 'backend/firebase/firebase_config.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'index.dart';
 
 void main() async {
@@ -18,8 +19,6 @@ void main() async {
   usePathUrlStrategy();
 
   await initFirebase();
-
-  await FlutterFlowTheme.initialize();
 
   final appState = FFAppState(); // Initialize FFAppState
   await appState.initializePersistedState();
@@ -54,7 +53,7 @@ class MyAppScrollBehavior extends MaterialScrollBehavior {
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeMode _themeMode = FlutterFlowTheme.themeMode;
+  ThemeMode _themeMode = ThemeMode.system;
 
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
@@ -102,7 +101,6 @@ class _MyAppState extends State<MyApp> {
 
   void setThemeMode(ThemeMode mode) => safeSetState(() {
         _themeMode = mode;
-        FlutterFlowTheme.saveThemeMode(mode);
       });
 
   @override
@@ -119,10 +117,6 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: const [Locale('en', '')],
       theme: ThemeData(
         brightness: Brightness.light,
-        useMaterial3: false,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
         useMaterial3: false,
       ),
       themeMode: _themeMode,
@@ -157,8 +151,9 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'HomePage': HomePageWidget(),
-      'Lessons': LessonsWidget(),
       'AccountInfo': AccountInfoWidget(),
+      'AiAgent': AiAgentWidget(),
+      'Dictionary': DictionaryWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -187,18 +182,26 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.library_books,
-              size: 24.0,
-            ),
-            label: 'Lessons',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               Icons.account_circle,
               size: 24.0,
             ),
             label: 'Account',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.robot,
+              size: 24.0,
+            ),
+            label: 'AI',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.menu_book_sharp,
+              size: 28.0,
+            ),
+            label: 'Home',
             tooltip: '',
           )
         ],

@@ -1,9 +1,13 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'update_account_info_model.dart';
 export 'update_account_info_model.dart';
 
@@ -82,10 +86,19 @@ class _UpdateAccountInfoWidgetState extends State<UpdateAccountInfoWidget> {
           title: Text(
             'Update Your ${widget.parameterToUpdate}',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'KoHo',
+                  font: GoogleFonts.koHo(
+                    fontWeight:
+                        FlutterFlowTheme.of(context).headlineMedium.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).headlineMedium.fontStyle,
+                  ),
                   color: Colors.white,
                   fontSize: 22.0,
                   letterSpacing: 0.0,
+                  fontWeight:
+                      FlutterFlowTheme.of(context).headlineMedium.fontWeight,
+                  fontStyle:
+                      FlutterFlowTheme.of(context).headlineMedium.fontStyle,
                 ),
           ),
           actions: [],
@@ -117,14 +130,40 @@ class _UpdateAccountInfoWidgetState extends State<UpdateAccountInfoWidget> {
                       labelText: widget.parameterToUpdate,
                       labelStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'KoHo',
+                                font: GoogleFonts.koHo(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontStyle,
+                                ),
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontStyle,
                               ),
                       hintText: widget.accountInfo,
                       hintStyle:
                           FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Inter',
+                                font: GoogleFonts.inter(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontStyle,
+                                ),
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .fontStyle,
                               ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -135,7 +174,7 @@ class _UpdateAccountInfoWidgetState extends State<UpdateAccountInfoWidget> {
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color(0x00000000),
+                          color: FlutterFlowTheme.of(context).primaryText,
                           width: 1.0,
                         ),
                         borderRadius: BorderRadius.circular(8.0),
@@ -171,8 +210,20 @@ class _UpdateAccountInfoWidgetState extends State<UpdateAccountInfoWidget> {
                           : null,
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'KoHo',
+                          font: GoogleFonts.koHo(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                           letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
                     cursorColor: FlutterFlowTheme.of(context).primaryText,
                     validator:
@@ -192,8 +243,35 @@ class _UpdateAccountInfoWidgetState extends State<UpdateAccountInfoWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            logFirebaseEvent(
+                                'UPDATE_ACCOUNT_INFO_SAVE_CHANGES_BTN_ON_');
+                            if (widget.parameterToUpdate == 'Password') {
+                              logFirebaseEvent('Button_backend_call');
+
+                              await currentUserReference!
+                                  .update(createUsersRecordData(
+                                email: '',
+                              ));
+                            } else if (widget.parameterToUpdate == 'Name') {
+                              logFirebaseEvent('Button_backend_call');
+
+                              await currentUserReference!
+                                  .update(createUsersRecordData(
+                                displayName: _model.textController.text,
+                              ));
+                            } else if (widget.parameterToUpdate == 'Age') {
+                              logFirebaseEvent('Button_backend_call');
+
+                              await currentUserReference!
+                                  .update(createUsersRecordData(
+                                age: int.tryParse(_model.textController.text),
+                              ));
+                            }
+
+                            logFirebaseEvent('Button_navigate_to');
+
+                            context.pushNamed(AccountInfoWidget.routeName);
                           },
                           text: 'Save Changes',
                           options: FFButtonOptions(
@@ -206,10 +284,23 @@ class _UpdateAccountInfoWidgetState extends State<UpdateAccountInfoWidget> {
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
-                                  fontFamily: 'KoHo',
+                                  font: GoogleFonts.koHo(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
                                 ),
                             elevation: 0.0,
                             borderSide: BorderSide(

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'account_info_model.dart';
 export 'account_info_model.dart';
 
@@ -90,9 +91,22 @@ class _AccountInfoWidgetState extends State<AccountInfoWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'KoHo',
+                                    font: GoogleFonts.koHo(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                     fontSize: 30.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                             ),
                           ),
@@ -147,15 +161,30 @@ class _AccountInfoWidgetState extends State<AccountInfoWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Age: ',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'KoHo',
-                                  fontSize: 30.0,
-                                  letterSpacing: 0.0,
-                                ),
+                          child: AuthUserStreamWidget(
+                            builder: (context) => Text(
+                              'Age: ${valueOrDefault(currentUserDocument?.age, 0).toString()}',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.koHo(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    fontSize: 30.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                            ),
                           ),
                         ),
                         Padding(
@@ -174,12 +203,13 @@ class _AccountInfoWidgetState extends State<AccountInfoWidget> {
                               context.pushNamed(
                                 UpdateAccountInfoWidget.routeName,
                                 queryParameters: {
-                                  'accountInfo': serializeParam(
-                                    '',
-                                    ParamType.String,
-                                  ),
                                   'parameterToUpdate': serializeParam(
                                     'Age',
+                                    ParamType.String,
+                                  ),
+                                  'accountInfo': serializeParam(
+                                    valueOrDefault(currentUserDocument?.age, 0)
+                                        .toString(),
                                     ParamType.String,
                                   ),
                                 }.withoutNulls,
@@ -202,22 +232,49 @@ class _AccountInfoWidgetState extends State<AccountInfoWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              20.0, 0.0, 0.0, 0.0),
-                          child: AuthUserStreamWidget(
-                            builder: (context) => Text(
-                              'Date Joined: ${currentUserDocument?.createdTime?.toString()}',
-                              textAlign: TextAlign.start,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'KoHo',
-                                    fontSize: 30.0,
-                                    letterSpacing: 0.0,
-                                  ),
+                        Wrap(
+                          spacing: 0.0,
+                          runSpacing: 0.0,
+                          alignment: WrapAlignment.start,
+                          crossAxisAlignment: WrapCrossAlignment.start,
+                          direction: Axis.horizontal,
+                          runAlignment: WrapAlignment.start,
+                          verticalDirection: VerticalDirection.down,
+                          clipBehavior: Clip.none,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 0.0, 0.0, 0.0),
+                              child: AuthUserStreamWidget(
+                                builder: (context) => Text(
+                                  'Date Joined: ${currentUserDocument?.createdTime?.toString()}',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.koHo(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        fontSize: 30.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       ],
                     ),
@@ -255,10 +312,23 @@ class _AccountInfoWidgetState extends State<AccountInfoWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
-                                fontFamily: 'KoHo',
+                                font: GoogleFonts.koHo(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
+                                ),
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontSize: 18.0,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontStyle,
                               ),
                           elevation: 0.0,
                           borderSide: BorderSide(

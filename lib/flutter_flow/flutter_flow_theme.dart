@@ -3,31 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
-
-const kThemeModeKey = '__theme_mode__';
-SharedPreferences? _prefs;
-
 abstract class FlutterFlowTheme {
-  static Future initialize() async =>
-      _prefs = await SharedPreferences.getInstance();
-  static ThemeMode get themeMode {
-    final darkMode = _prefs?.getBool(kThemeModeKey);
-    return darkMode == null
-        ? ThemeMode.system
-        : darkMode
-            ? ThemeMode.dark
-            : ThemeMode.light;
-  }
-
-  static void saveThemeMode(ThemeMode mode) => mode == ThemeMode.system
-      ? _prefs?.remove(kThemeModeKey)
-      : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
-
   static FlutterFlowTheme of(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark
-        ? DarkModeTheme()
-        : LightModeTheme();
+    return LightModeTheme();
   }
 
   @Deprecated('Use primary instead')
@@ -182,177 +160,145 @@ class ThemeTypography extends Typography {
   final FlutterFlowTheme theme;
 
   String get displayLargeFamily => 'KoHo';
-  TextStyle get displayLarge => GoogleFonts.getFont(
-        'KoHo',
+  TextStyle get displayLarge => GoogleFonts.koHo(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 32.0,
         fontStyle: FontStyle.normal,
       );
   String get displayMediumFamily => 'KoHo';
-  TextStyle get displayMedium => GoogleFonts.getFont(
-        'KoHo',
+  TextStyle get displayMedium => GoogleFonts.koHo(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
         fontStyle: FontStyle.normal,
       );
   String get displaySmallFamily => 'KoHo';
-  TextStyle get displaySmall => GoogleFonts.getFont(
-        'KoHo',
+  TextStyle get displaySmall => GoogleFonts.koHo(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
         fontStyle: FontStyle.normal,
       );
   String get headlineLargeFamily => 'KoHo';
-  TextStyle get headlineLarge => GoogleFonts.getFont(
-        'KoHo',
+  TextStyle get headlineLarge => GoogleFonts.koHo(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 24.0,
         fontStyle: FontStyle.normal,
       );
   String get headlineMediumFamily => 'Inter Tight';
-  TextStyle get headlineMedium => GoogleFonts.getFont(
-        'Inter Tight',
+  TextStyle get headlineMedium => GoogleFonts.interTight(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 28.0,
       );
   String get headlineSmallFamily => 'Inter Tight';
-  TextStyle get headlineSmall => GoogleFonts.getFont(
-        'Inter Tight',
+  TextStyle get headlineSmall => GoogleFonts.interTight(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
   String get titleLargeFamily => 'KoHo';
-  TextStyle get titleLarge => GoogleFonts.getFont(
-        'KoHo',
+  TextStyle get titleLarge => GoogleFonts.koHo(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
         fontStyle: FontStyle.normal,
       );
   String get titleMediumFamily => 'Inter Tight';
-  TextStyle get titleMedium => GoogleFonts.getFont(
-        'Inter Tight',
+  TextStyle get titleMedium => GoogleFonts.interTight(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 18.0,
       );
   String get titleSmallFamily => 'Inter Tight';
-  TextStyle get titleSmall => GoogleFonts.getFont(
-        'Inter Tight',
+  TextStyle get titleSmall => GoogleFonts.interTight(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 16.0,
       );
   String get labelLargeFamily => 'Inter';
-  TextStyle get labelLarge => GoogleFonts.getFont(
-        'Inter',
+  TextStyle get labelLarge => GoogleFonts.inter(
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
   String get labelMediumFamily => 'Inter';
-  TextStyle get labelMedium => GoogleFonts.getFont(
-        'Inter',
+  TextStyle get labelMedium => GoogleFonts.inter(
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
   String get labelSmallFamily => 'Inter';
-  TextStyle get labelSmall => GoogleFonts.getFont(
-        'Inter',
+  TextStyle get labelSmall => GoogleFonts.inter(
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
   String get bodyLargeFamily => 'Inter';
-  TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Inter',
+  TextStyle get bodyLarge => GoogleFonts.inter(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
   String get bodyMediumFamily => 'Inter';
-  TextStyle get bodyMedium => GoogleFonts.getFont(
-        'Inter',
+  TextStyle get bodyMedium => GoogleFonts.inter(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
   String get bodySmallFamily => 'Inter';
-  TextStyle get bodySmall => GoogleFonts.getFont(
-        'Inter',
+  TextStyle get bodySmall => GoogleFonts.inter(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
 }
 
-class DarkModeTheme extends FlutterFlowTheme {
-  @Deprecated('Use primary instead')
-  Color get primaryColor => primary;
-  @Deprecated('Use secondary instead')
-  Color get secondaryColor => secondary;
-  @Deprecated('Use tertiary instead')
-  Color get tertiaryColor => tertiary;
-
-  late Color primary = const Color(0xFF4B39EF);
-  late Color secondary = const Color(0xFF39D2C0);
-  late Color tertiary = const Color(0xFFEE8B60);
-  late Color alternate = const Color(0xFF262D34);
-  late Color primaryText = const Color(0xFFFFFFFF);
-  late Color secondaryText = const Color(0xFF95A1AC);
-  late Color primaryBackground = const Color(0xFF1D2428);
-  late Color secondaryBackground = const Color(0xFF14181B);
-  late Color accent1 = const Color(0x4C4B39EF);
-  late Color accent2 = const Color(0x4D39D2C0);
-  late Color accent3 = const Color(0x4DEE8B60);
-  late Color accent4 = const Color(0xB2262D34);
-  late Color success = const Color(0xFF249689);
-  late Color warning = const Color(0xFFF9CF58);
-  late Color error = const Color(0xFFFF5963);
-  late Color info = const Color(0xFFFFFFFF);
-}
-
 extension TextStyleHelper on TextStyle {
   TextStyle override({
+    TextStyle? font,
     String? fontFamily,
     Color? color,
     double? fontSize,
     FontWeight? fontWeight,
     double? letterSpacing,
     FontStyle? fontStyle,
-    bool useGoogleFonts = true,
+    bool useGoogleFonts = false,
     TextDecoration? decoration,
     double? lineHeight,
     List<Shadow>? shadows,
-  }) =>
-      useGoogleFonts
-          ? GoogleFonts.getFont(
-              fontFamily!,
-              color: color ?? this.color,
-              fontSize: fontSize ?? this.fontSize,
-              letterSpacing: letterSpacing ?? this.letterSpacing,
-              fontWeight: fontWeight ?? this.fontWeight,
-              fontStyle: fontStyle ?? this.fontStyle,
-              decoration: decoration,
-              height: lineHeight,
-              shadows: shadows,
-            )
-          : copyWith(
-              fontFamily: fontFamily,
-              color: color,
-              fontSize: fontSize,
-              letterSpacing: letterSpacing,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              decoration: decoration,
-              height: lineHeight,
-              shadows: shadows,
-            );
+    String? package,
+  }) {
+    if (useGoogleFonts && fontFamily != null) {
+      font = GoogleFonts.getFont(fontFamily,
+          fontWeight: fontWeight ?? this.fontWeight,
+          fontStyle: fontStyle ?? this.fontStyle);
+    }
+
+    return font != null
+        ? font.copyWith(
+            color: color ?? this.color,
+            fontSize: fontSize ?? this.fontSize,
+            letterSpacing: letterSpacing ?? this.letterSpacing,
+            fontWeight: fontWeight ?? this.fontWeight,
+            fontStyle: fontStyle ?? this.fontStyle,
+            decoration: decoration,
+            height: lineHeight,
+            shadows: shadows,
+          )
+        : copyWith(
+            fontFamily: fontFamily,
+            package: package,
+            color: color,
+            fontSize: fontSize,
+            letterSpacing: letterSpacing,
+            fontWeight: fontWeight,
+            fontStyle: fontStyle,
+            decoration: decoration,
+            height: lineHeight,
+            shadows: shadows,
+          );
+  }
 }

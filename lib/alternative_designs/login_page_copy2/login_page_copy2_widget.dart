@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'login_page_copy2_model.dart';
 export 'login_page_copy2_model.dart';
 
@@ -88,10 +89,19 @@ class _LoginPageCopy2WidgetState extends State<LoginPageCopy2Widget> {
               Text(
                 'LOG IN',
                 style: FlutterFlowTheme.of(context).displayLarge.override(
-                  fontFamily: 'KoHo',
+                  font: GoogleFonts.koHo(
+                    fontWeight:
+                        FlutterFlowTheme.of(context).displayLarge.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).displayLarge.fontStyle,
+                  ),
                   color: FlutterFlowTheme.of(context).alternate,
                   fontSize: 60.0,
                   letterSpacing: 0.0,
+                  fontWeight:
+                      FlutterFlowTheme.of(context).displayLarge.fontWeight,
+                  fontStyle:
+                      FlutterFlowTheme.of(context).displayLarge.fontStyle,
                   shadows: [
                     Shadow(
                       color: FlutterFlowTheme.of(context).primaryText,
@@ -122,16 +132,42 @@ class _LoginPageCopy2WidgetState extends State<LoginPageCopy2Widget> {
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Inter',
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontStyle,
                                 ),
                             hintText: 'Email:',
                             hintStyle: FlutterFlowTheme.of(context)
                                 .displayMedium
                                 .override(
-                                  fontFamily: 'KoHo',
+                                  font: GoogleFonts.koHo(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displayMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displayMedium
+                                        .fontStyle,
+                                  ),
                                   fontSize: 16.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displayMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displayMedium
+                                      .fontStyle,
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -167,9 +203,22 @@ class _LoginPageCopy2WidgetState extends State<LoginPageCopy2Widget> {
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Inter',
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                           textAlign: TextAlign.start,
                           cursorColor: FlutterFlowTheme.of(context).primaryText,
@@ -193,16 +242,42 @@ class _LoginPageCopy2WidgetState extends State<LoginPageCopy2Widget> {
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
-                                  fontFamily: 'Inter',
+                                  font: GoogleFonts.inter(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .fontStyle,
                                 ),
                             hintText: 'Password:',
                             hintStyle: FlutterFlowTheme.of(context)
                                 .displayMedium
                                 .override(
-                                  fontFamily: 'KoHo',
+                                  font: GoogleFonts.koHo(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displayMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displayMedium
+                                        .fontStyle,
+                                  ),
                                   fontSize: 16.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displayMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displayMedium
+                                      .fontStyle,
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -251,8 +326,21 @@ class _LoginPageCopy2WidgetState extends State<LoginPageCopy2Widget> {
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Inter',
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                           cursorColor: FlutterFlowTheme.of(context).primaryText,
                           validator: _model.loginPasswordTextControllerValidator
@@ -303,9 +391,22 @@ class _LoginPageCopy2WidgetState extends State<LoginPageCopy2Widget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .displayLarge
                               .override(
-                                fontFamily: 'KoHo',
+                                font: GoogleFonts.koHo(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontStyle,
+                                ),
                                 fontSize: 25.0,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .displayLarge
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .displayLarge
+                                    .fontStyle,
                               ),
                           elevation: 0.0,
                           borderSide: BorderSide(
@@ -321,9 +422,22 @@ class _LoginPageCopy2WidgetState extends State<LoginPageCopy2Widget> {
                       child: Text(
                         'or',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Inter',
+                              font: GoogleFonts.inter(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
                               fontSize: 20.0,
                               letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
                             ),
                       ),
                     ),
@@ -390,9 +504,24 @@ class _LoginPageCopy2WidgetState extends State<LoginPageCopy2Widget> {
                                   style: FlutterFlowTheme.of(context)
                                       .headlineLarge
                                       .override(
-                                        fontFamily: 'KoHo',
+                                        font: GoogleFonts.koHo(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineLarge
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineLarge
+                                                  .fontStyle,
+                                        ),
                                         fontSize: 25.0,
                                         letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .headlineLarge
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .headlineLarge
+                                            .fontStyle,
                                       ),
                                 )),
                               ),
@@ -409,9 +538,19 @@ class _LoginPageCopy2WidgetState extends State<LoginPageCopy2Widget> {
                 child: Text(
                   'Don\'t have an account?',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
+                        font: GoogleFonts.inter(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                        ),
                         fontSize: 20.0,
                         letterSpacing: 0.0,
+                        fontWeight:
+                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                       ),
                 ),
               ),
@@ -436,9 +575,22 @@ class _LoginPageCopy2WidgetState extends State<LoginPageCopy2Widget> {
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle:
                         FlutterFlowTheme.of(context).displayLarge.override(
-                              fontFamily: 'KoHo',
+                              font: GoogleFonts.koHo(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .displayLarge
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .displayLarge
+                                    .fontStyle,
+                              ),
                               fontSize: 25.0,
                               letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .displayLarge
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .displayLarge
+                                  .fontStyle,
                             ),
                     elevation: 0.0,
                     borderSide: BorderSide(

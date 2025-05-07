@@ -21,8 +21,6 @@ void main() async {
 
   setUpAll(() async {
     await initFirebase();
-
-    await FlutterFlowTheme.initialize();
   });
 
   setUp(() async {
@@ -53,6 +51,39 @@ void main() async {
     await tester.tap(find.byKey(const ValueKey('LoginButton_i83y')));
     await tester.pumpAndSettle(const Duration(milliseconds: 10000));
     expect(find.byKey(const ValueKey('Button_ijqa')), findsWidgets);
+  });
+
+  testWidgets('Onboarding', (WidgetTester tester) async {
+    _overrideOnError();
+
+    await tester.pumpWidget(ChangeNotifierProvider(
+      create: (context) => FFAppState(),
+      child: MyApp(
+        entryPage: OnBoardingWidget(),
+      ),
+    ));
+    await GoogleFonts.pendingFonts();
+
+    await tester.enterText(
+        find.byKey(const ValueKey('TextField_s8in')), 'Nadia');
+    await tester.pumpAndSettle(const Duration(milliseconds: 5000));
+    await tester.tap(find.byKey(const ValueKey('Button_hob0')));
+    await tester.pumpAndSettle(const Duration(milliseconds: 10000));
+    await tester.enterText(find.byKey(const ValueKey('TextField_hptm')), '22');
+    await tester.pumpAndSettle(const Duration(milliseconds: 5000));
+    await tester.tap(find.byKey(const ValueKey('Button_miet')));
+    await tester.pumpAndSettle(const Duration(milliseconds: 10000));
+    expect(find.byKey(const ValueKey('UNDEFINED')), findsWidgets);
+  });
+
+  testWidgets('Account Creation', (WidgetTester tester) async {
+    _overrideOnError();
+
+    await tester.pumpWidget(ChangeNotifierProvider(
+      create: (context) => FFAppState(),
+      child: const MyApp(),
+    ));
+    await GoogleFonts.pendingFonts();
   });
 }
 

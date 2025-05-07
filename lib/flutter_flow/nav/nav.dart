@@ -129,9 +129,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
         FFRoute(
           name: LessonsWidget.routeName,
           path: LessonsWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Lessons')
-              : LessonsWidget(),
+          builder: (context, params) => LessonsWidget(),
         ),
         FFRoute(
           name: LessonTemplateWidget.routeName,
@@ -252,6 +250,68 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: LoginPageCopy2CopyWidget.routeName,
           path: LoginPageCopy2CopyWidget.routePath,
           builder: (context, params) => LoginPageCopy2CopyWidget(),
+        ),
+        FFRoute(
+          name: RemoteControlWidget.routeName,
+          path: RemoteControlWidget.routePath,
+          builder: (context, params) => RemoteControlWidget(),
+        ),
+        FFRoute(
+          name: AiAgentWidget.routeName,
+          path: AiAgentWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'AiAgent')
+              : NavBarPage(
+                  initialPage: 'AiAgent',
+                  page: AiAgentWidget(),
+                ),
+        ),
+        FFRoute(
+          name: DictionaryWidget.routeName,
+          path: DictionaryWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Dictionary')
+              : DictionaryWidget(),
+        ),
+        FFRoute(
+          name: DanceWidget.routeName,
+          path: DanceWidget.routePath,
+          builder: (context, params) => DanceWidget(),
+        ),
+        FFRoute(
+          name: MovingBackWidget.routeName,
+          path: MovingBackWidget.routePath,
+          builder: (context, params) => MovingBackWidget(),
+        ),
+        FFRoute(
+          name: MovingForwardWidget.routeName,
+          path: MovingForwardWidget.routePath,
+          builder: (context, params) => MovingForwardWidget(),
+        ),
+        FFRoute(
+          name: MovingLeftWidget.routeName,
+          path: MovingLeftWidget.routePath,
+          builder: (context, params) => MovingLeftWidget(),
+        ),
+        FFRoute(
+          name: MovingRightWidget.routeName,
+          path: MovingRightWidget.routePath,
+          builder: (context, params) => MovingRightWidget(),
+        ),
+        FFRoute(
+          name: SingWidget.routeName,
+          path: SingWidget.routePath,
+          builder: (context, params) => SingWidget(),
+        ),
+        FFRoute(
+          name: RepeatLoopWidget.routeName,
+          path: RepeatLoopWidget.routePath,
+          builder: (context, params) => RepeatLoopWidget(),
+        ),
+        FFRoute(
+          name: BreakOutWidget.routeName,
+          path: BreakOutWidget.routePath,
+          builder: (context, params) => BreakOutWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

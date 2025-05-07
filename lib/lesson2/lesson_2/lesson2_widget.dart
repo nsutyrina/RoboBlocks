@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'lesson2_model.dart';
 export 'lesson2_model.dart';
 
@@ -84,10 +85,23 @@ class _Lesson2WidgetState extends State<Lesson2Widget> {
                           color: FlutterFlowTheme.of(context).alternate,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Inter Tight',
+                                    font: GoogleFonts.interTight(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
                                     color: Colors.white,
                                     fontSize: 40.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
                                   ),
                           elevation: 0.0,
                           borderSide: BorderSide(
@@ -120,9 +134,22 @@ class _Lesson2WidgetState extends State<Lesson2Widget> {
                   child: Text(
                     'Welcome to Lesson 2!',
                     style: FlutterFlowTheme.of(context).headlineLarge.override(
-                          fontFamily: 'KoHo',
+                          font: GoogleFonts.koHo(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .headlineLarge
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .headlineLarge
+                                .fontStyle,
+                          ),
                           fontSize: 30.0,
                           letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .headlineLarge
+                              .fontWeight,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .headlineLarge
+                              .fontStyle,
                         ),
                   ),
                 ),
@@ -132,8 +159,21 @@ class _Lesson2WidgetState extends State<Lesson2Widget> {
                     'Let\'s learn how to move your robot!',
                     textAlign: TextAlign.center,
                     style: FlutterFlowTheme.of(context).headlineLarge.override(
-                          fontFamily: 'KoHo',
+                          font: GoogleFonts.koHo(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .headlineLarge
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .headlineLarge
+                                .fontStyle,
+                          ),
                           letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .headlineLarge
+                              .fontWeight,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .headlineLarge
+                              .fontStyle,
                         ),
                   ),
                 ),
@@ -163,9 +203,22 @@ class _Lesson2WidgetState extends State<Lesson2Widget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .displayMedium
                               .override(
-                                fontFamily: 'KoHo',
+                                font: GoogleFonts.koHo(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displayMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displayMedium
+                                      .fontStyle,
+                                ),
                                 fontSize: 25.0,
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .displayMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .displayMedium
+                                    .fontStyle,
                               ),
                           elevation: 0.0,
                           borderSide: BorderSide(

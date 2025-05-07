@@ -45,6 +45,21 @@ class UsersRecord extends FirestoreRecord {
   String get phoneNumber => _phoneNumber ?? '';
   bool hasPhoneNumber() => _phoneNumber != null;
 
+  // "age" field.
+  int? _age;
+  int get age => _age ?? 0;
+  bool hasAge() => _age != null;
+
+  // "LastLogin" field.
+  DateTime? _lastLogin;
+  DateTime? get lastLogin => _lastLogin;
+  bool hasLastLogin() => _lastLogin != null;
+
+  // "loginStreak" field.
+  int? _loginStreak;
+  int get loginStreak => _loginStreak ?? 0;
+  bool hasLoginStreak() => _loginStreak != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -52,6 +67,9 @@ class UsersRecord extends FirestoreRecord {
     _uid = snapshotData['uid'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
+    _age = castToType<int>(snapshotData['age']);
+    _lastLogin = snapshotData['LastLogin'] as DateTime?;
+    _loginStreak = castToType<int>(snapshotData['loginStreak']);
   }
 
   static CollectionReference get collection =>
@@ -94,6 +112,9 @@ Map<String, dynamic> createUsersRecordData({
   String? uid,
   DateTime? createdTime,
   String? phoneNumber,
+  int? age,
+  DateTime? lastLogin,
+  int? loginStreak,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -103,6 +124,9 @@ Map<String, dynamic> createUsersRecordData({
       'uid': uid,
       'created_time': createdTime,
       'phone_number': phoneNumber,
+      'age': age,
+      'LastLogin': lastLogin,
+      'loginStreak': loginStreak,
     }.withoutNulls,
   );
 
@@ -119,7 +143,10 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.photoUrl == e2?.photoUrl &&
         e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
-        e1?.phoneNumber == e2?.phoneNumber;
+        e1?.phoneNumber == e2?.phoneNumber &&
+        e1?.age == e2?.age &&
+        e1?.lastLogin == e2?.lastLogin &&
+        e1?.loginStreak == e2?.loginStreak;
   }
 
   @override
@@ -129,7 +156,10 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.photoUrl,
         e?.uid,
         e?.createdTime,
-        e?.phoneNumber
+        e?.phoneNumber,
+        e?.age,
+        e?.lastLogin,
+        e?.loginStreak
       ]);
 
   @override
