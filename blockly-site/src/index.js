@@ -37,6 +37,7 @@ window.sendSing = () => sendFlutterCommand('s');
 
 // Send to Flutter
 function sendFlutterCommand(char) {
+  logDebug('sendFlutterCommand');
   if (!isFlutterReady || !isDeviceIdReady) {
     logDebug('Queued (waiting for Flutter/deviceId)');
     commandQueue.push(char);
@@ -56,6 +57,7 @@ function sendFlutterCommand(char) {
 
 // Send any queued commands
 function flushCommandQueue() {
+  logDebug('flushCommandQueue');
   if (!isFlutterReady || !isDeviceIdReady) {
     logDebug('failed to flush command queue');
     return;
