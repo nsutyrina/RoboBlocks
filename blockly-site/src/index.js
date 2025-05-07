@@ -5,29 +5,29 @@
  */
 
 import * as Blockly from 'blockly';
-import {blocks as textBlocks} from './blocks/text';
-import {blocks as robotBlocks} from './blocks/robot';
-import {forBlock as textGen} from './generators/javascript';
-import {forBlock as robotGen} from './generators/javascript';
-import {javascriptGenerator} from 'blockly/javascript';
-import {save, load} from './serialization';
-import {toolbox} from './toolbox';
+import { blocks as textBlocks } from './blocks/text';
+import { blocks as robotBlocks } from './blocks/robot';
+import { forBlock as textGen } from './generators/javascript';
+import { forBlock as robotGen } from './generators/javascript';
+import { javascriptGenerator } from 'blockly/javascript';
+import { save, load } from './serialization';
+import { toolbox } from './toolbox';
 import './index.css';
 
-// 🔌 Globals from Flutter
-let deviceId = '48:87:2D:F1:08:B6'; // ← Replace with your robot's ID if needed
+// 🔌 Hardcoded Device ID (bypass Flutter injection)
+let deviceId = '48:87:2D:F1:08:B6';
 let isFlutterReady = false;
-let isDeviceIdReady = true; // <-- we force it to be ready
+let isDeviceIdReady = true; // Pretend we already got it
 const commandQueue = [];
 
-// Listen for WebView Ready
+// ✅ Flutter WebView ready
 window.addEventListener('flutterInAppWebViewPlatformReady', () => {
   isFlutterReady = true;
-  logDebug('Flutter WebView is ready');
+  logDebug('✅ Flutter WebView is ready');
   flushCommandQueue();
 });
 
-// Blockly → Flutter commands
+// ✅ Blockly → Flutter commands
 window.sendForward = () => sendFlutterCommand('f');
 window.sendBackward = () => sendFlutterCommand('b');
 window.sendLeft = () => sendFlutterCommand('l');
@@ -35,11 +35,10 @@ window.sendRight = () => sendFlutterCommand('r');
 window.sendDance = () => sendFlutterCommand('d');
 window.sendSing = () => sendFlutterCommand('s');
 
-// Send to Flutter
+// 📤 Send command to Flutter
 function sendFlutterCommand(char) {
-  logDebug('sendFlutterCommand');
   if (!isFlutterReady || !isDeviceIdReady) {
-    logDebug('Queued (waiting for Flutter/deviceId)');
+    logDebug(`⏳ Queued '${char}' (waiting for Flutter/deviceId)`);
     commandQueue.push(char);
     return;
   }
@@ -49,27 +48,23 @@ function sendFlutterCommand(char) {
       'onReceivedJsMessage',
       JSON.stringify({ deviceId, char })
     );
-    logDebug('Sent to Flutter (deviceId: ${deviceId})');
+    logDebug(`📤 Sent '${char}' to Flutter (deviceId: ${deviceId})`);
   } else {
-    logDebug('Not running inside Flutter WebView');
+    logDebug('⚠️ Not running inside Flutter WebView');
   }
 }
 
-// Send any queued commands
+// 🔄 Flush queued commands
 function flushCommandQueue() {
-  logDebug('flushCommandQueue');
-  if (!isFlutterReady || !isDeviceIdReady) {
-    logDebug('failed to flush command queue');
-    return;
-  }
-  logDebug('Flushing ${commandQueue.length} queued command(s)...');
+  if (!isFlutterReady || !isDeviceIdReady) return;
+  logDebug(`🚀 Flushing ${commandQueue.length} queued command(s)...`);
   while (commandQueue.length > 0) {
     const char = commandQueue.shift();
     sendFlutterCommand(char);
   }
 }
 
-// Debug logger
+// 📝 Log debugger output
 function logDebug(msg) {
   console.log(msg);
   const logEl = document.getElementById('flutterDebugLog');
@@ -80,17 +75,19 @@ function logDebug(msg) {
   }
 }
 
-// Blockly setup
+// 🧱 Register custom blocks + code generators
 Blockly.common.defineBlocks(textBlocks);
 Blockly.common.defineBlocks(robotBlocks);
 Object.assign(javascriptGenerator.forBlock, textGen);
 Object.assign(javascriptGenerator.forBlock, robotGen);
 
+// 🧠 Setup Blockly UI
 const codeDiv = document.getElementById('generatedCode')?.firstChild;
 const outputDiv = document.getElementById('output');
 const blocklyDiv = document.getElementById('blocklyDiv');
 const ws = Blockly.inject(blocklyDiv, { toolbox });
 
+// ▶️ Run generated Blockly code
 const runCode = () => {
   const code = javascriptGenerator.workspaceToCode(ws);
   if (codeDiv) codeDiv.innerText = code;
@@ -99,18 +96,22 @@ const runCode = () => {
   try {
     eval(code);
   } catch (e) {
-    outputDiv.innerHTML = '<pre style="color:red;">${e}</pre>';
-    logDebug('JS Eval Error: ${e.message}');
+    if (outputDiv) {
+      outputDiv.innerHTML = `<pre style="color:red;">${e}</pre>`;
+    }
+    logDebug(`❌ JS Eval Error: ${e.message}`);
   }
 };
 
+// 🔁 Init workspace
 load(ws);
 runCode();
 
+// 💾 Auto-save on changes
 ws.addChangeListener((e) => {
   if (e.isUiEvent) return;
   save(ws);
 });
 
+// ▶️ Manual run
 document.getElementById('runButton')?.addEventListener('click', runCode);
-
