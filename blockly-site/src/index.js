@@ -56,7 +56,10 @@ function sendFlutterCommand(char) {
 
 // 🧹 Send any queued commands
 function flushCommandQueue() {
-  if (!isFlutterReady || !isDeviceIdReady) return;
+  if (!isFlutterReady || !isDeviceIdReady) {
+    logDebug('failed to flush command queue');
+    return;
+  }
   logDebug(🚀 Flushing ${commandQueue.length} queued command(s)...);
   while (commandQueue.length > 0) {
     const char = commandQueue.shift();
