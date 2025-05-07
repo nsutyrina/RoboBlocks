@@ -97,7 +97,7 @@ const runCode = () => {
   try {
     eval(code);
   } catch (e) {
-    outputDiv.innerHTML = <pre style="color:red;">${e}</pre>;
+    outputDiv.innerHTML = '<pre style="color:red;">${e}</pre>';
     logDebug('JS Eval Error: ${e.message}');
   }
 };
