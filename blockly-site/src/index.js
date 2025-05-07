@@ -20,14 +20,14 @@ let isFlutterReady = false;
 let isDeviceIdReady = true; // <-- we force it to be ready
 const commandQueue = [];
 
-// ✅ Listen for WebView Ready
+// Listen for WebView Ready
 window.addEventListener('flutterInAppWebViewPlatformReady', () => {
   isFlutterReady = true;
   logDebug('Flutter WebView is ready');
   flushCommandQueue();
 });
 
-// 🧠 Blockly → Flutter commands
+// Blockly → Flutter commands
 window.sendForward = () => sendFlutterCommand('f');
 window.sendBackward = () => sendFlutterCommand('b');
 window.sendLeft = () => sendFlutterCommand('l');
@@ -35,7 +35,7 @@ window.sendRight = () => sendFlutterCommand('r');
 window.sendDance = () => sendFlutterCommand('d');
 window.sendSing = () => sendFlutterCommand('s');
 
-// 📤 Send to Flutter
+// Send to Flutter
 function sendFlutterCommand(char) {
   if (!isFlutterReady || !isDeviceIdReady) {
     logDebug('Queued (waiting for Flutter/deviceId)');
@@ -54,20 +54,20 @@ function sendFlutterCommand(char) {
   }
 }
 
-// 🧹 Send any queued commands
+// Send any queued commands
 function flushCommandQueue() {
   if (!isFlutterReady || !isDeviceIdReady) {
     logDebug('failed to flush command queue');
     return;
   }
-  logDebug(🚀 Flushing ${commandQueue.length} queued command(s)...);
+  logDebug('Flushing ${commandQueue.length} queued command(s)...');
   while (commandQueue.length > 0) {
     const char = commandQueue.shift();
     sendFlutterCommand(char);
   }
 }
 
-// 📝 Debug logger
+// Debug logger
 function logDebug(msg) {
   console.log(msg);
   const logEl = document.getElementById('flutterDebugLog');
@@ -78,7 +78,7 @@ function logDebug(msg) {
   }
 }
 
-// 🔧 Blockly setup
+// Blockly setup
 Blockly.common.defineBlocks(textBlocks);
 Blockly.common.defineBlocks(robotBlocks);
 Object.assign(javascriptGenerator.forBlock, textGen);
